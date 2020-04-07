@@ -22,13 +22,10 @@ namespace BattleTank.Tank
 
         }  
 
-       
-
+             
         public TankModel TankModel { get; }
 
         public TankView TankView { get; }
-
-
 
 
         public void tankFire()
@@ -36,7 +33,5 @@ namespace BattleTank.Tank
             Debug.Log("Tank fired a bullet!!!!!!");
         }
 
-     
-
-    }
+     }
 }

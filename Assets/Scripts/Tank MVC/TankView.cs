@@ -21,16 +21,13 @@ namespace BattleTank.Tank
         {
             //Reference to tankmodel1 inside tank service.
             tankModelRef = TankService.tank1();
+
             //Initialize the value of speed from tankmodelRef.
             //tankmodelref which is getting values from tank service tank1 method.
             speed = tankModelRef.Speed;
 
-            
-
             Initialize(tankControllerRef);
         }
-
-
 
         private void Start()
         {
