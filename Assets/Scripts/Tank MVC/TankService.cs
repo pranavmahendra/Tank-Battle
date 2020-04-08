@@ -47,7 +47,7 @@ namespace BattleTank.Tank
         //Create a tank1 model which is a static method.
         public static TankModel tank1()
         {
-            return new TankModel(40, 100);
+            return new TankModel(40, 100, Color.blue);
         } 
       
     }
