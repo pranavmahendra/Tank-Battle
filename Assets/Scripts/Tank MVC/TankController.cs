@@ -7,7 +7,7 @@ namespace BattleTank.Tank
 {
     public class TankController 
     {
-        
+       
 
         public TankController(TankModel tankmodel, TankView tankprefab)
         {
@@ -22,17 +22,20 @@ namespace BattleTank.Tank
             
             Debug.Log("Tank View created", TankView);
 
-        }  
-        
+        }
+
+        public TankService tankService;
              
         public TankModel TankModel { get; set; }
 
         public TankView TankView { get; private set; }
 
+
         public TankModel GetModel()
         {
             return TankModel;
         }
+
 
         public void tankFire()
         {

@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fdaf6999c7dd44b797c8755f3089741, type: 3}
-  m_Name: BlueTankA
+  m_Script: {fileID: 11500000, guid: c50dc2760120d4afda110b32b44359f8, type: 3}
+  m_Name: MedumDamageBullet
   m_EditorClassIdentifier: 
-  TankType: 3
-  TankName: Blue Tank A
-  Speed: 50
-  Health: 100
-  bullet: 2
-  bulletDetails: {fileID: 11400000, guid: 8d7fc967936de4f388e6e2e013750321, type: 2}
+  bulletType: 2
+  damage: 25

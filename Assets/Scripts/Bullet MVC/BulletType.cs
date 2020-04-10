@@ -2,8 +2,9 @@
 
 public enum BulletType
 {
-    None,
-    Slow,
-    Medium,
-    Fast
+    None = 0,
+    HighDamage = 1,
+    MediumDamage = 2,
+    LowDamage = 3
 }
+

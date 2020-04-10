@@ -6,15 +6,14 @@ namespace BattleTank.bullet
 {
     public class BulletModel
     {
-        public BulletModel(BulletType bulletType, int speed, int damage)
+
+        public BulletModel(BulletScriptableObject bulletScriptableObject)
         {
-            BulletType = bulletType;
-            Speed = speed;
-            Damage = damage;
+            BulletType = bulletScriptableObject.bulletType;
+            Damage = (int)bulletScriptableObject.damage;
         }
 
         public BulletType BulletType { get; }
-        public int Speed { get; }
         public int Damage { get; }
     }
 

@@ -11,7 +11,9 @@ namespace BattleTank.Tank
 
         public TankView tankView;
 
-        public TankScriptableObjects[] tankConfig;
+        public TankScriptableObjectList tankList;
+
+   
 
         protected override void Awake()
         {
@@ -25,18 +27,19 @@ namespace BattleTank.Tank
         {
             for (int i=0; i < 3; i++)
             {
-                CreateNewTank();
+                CreateNewTank(i);
             }
                  
         }
-
       
-        //Method for creating new TC.Try calling this in TankView. This is returning
+        //Method for creating new TC. This is returning
         //TankController.
-        public  TankController CreateNewTank()
+        public  TankController CreateNewTank(int index)
         {
 
-            TankScriptableObjects tankScriptableObject = tankConfig[1];
+            TankScriptableObjects tankScriptableObject = tankList.tanks[index];
+            Debug.Log("Created type of tank is" + tankScriptableObject.TankType);
+
             //Created a first tank model, and prefab is the 3d model(prefab)
             //with which this TankView script is attached to.
             TankModel tankModel1 = new TankModel(tankScriptableObject);
@@ -49,6 +52,7 @@ namespace BattleTank.Tank
 
             return tankcontroller1;
         }
+
 
     }
 }

@@ -152,9 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankView: {fileID: 2945766544490434592, guid: 0c752e6b1df8445978cd5732f6603336,
     type: 3}
-  tankConfig:
-  - {fileID: 0}
-  - {fileID: 0}
+  tankList: {fileID: 11400000, guid: 524f350969d344b959e361af7e0f2b87, type: 2}
 --- !u!4 &159771019
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +166,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &186099075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 186099077}
+  - component: {fileID: 186099076}
+  m_Layer: 0
+  m_Name: BulletService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &186099076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186099075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53398202ffb8b4ae78dee4e4c23ddccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletView: {fileID: 5065622971798973758, guid: fc0062078556e4d9f87f82b4618f4855,
+    type: 3}
+  bulletList: {fileID: 11400000, guid: 6837f34c672864614a4304caa9a8fcfb, type: 2}
+--- !u!4 &186099077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186099075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.062441, y: 0.6731421, z: 9.4543085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1158996493
 PrefabInstance:

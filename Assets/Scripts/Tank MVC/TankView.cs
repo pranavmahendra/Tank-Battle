@@ -9,7 +9,8 @@ namespace BattleTank.Tank
     {
 
         private TankController tankController;
-       
+
+        public TankType tankType;
 
         private Renderer tankRenderer;
 
@@ -21,7 +22,7 @@ namespace BattleTank.Tank
 
         private void Start()
         {
-
+            tankType = tankController.GetModel().TankType;
 
             rb3d = GetComponent<Rigidbody>();
             
@@ -50,7 +51,7 @@ namespace BattleTank.Tank
 
             tankMovement();
 
-            //rotationMovement();
+            rotationMovement();
         }
 
 
@@ -84,16 +85,16 @@ namespace BattleTank.Tank
         }
 
         //Tank Rotation
-        //public void rotationMovement()
-        //{
+        public void rotationMovement()
+        {
 
-        //    float rAxis = Input.GetAxis("Mouse Y");
+            float rAxis = Input.GetAxis("Mouse Y");
 
-            
-        //        Vector3 rotation = new Vector3(transform.rotation.x, rAxis, transform.rotation.z) * Time.deltaTime;
-        //        transform.RotateAround(rotation, rAxis);
-         
-        //}
+
+            Vector3 rotation = new Vector3(transform.rotation.x, rAxis, transform.rotation.z) * Time.deltaTime;
+            transform.RotateAround(rotation, rAxis);
+
+        }
 
     }
 }
