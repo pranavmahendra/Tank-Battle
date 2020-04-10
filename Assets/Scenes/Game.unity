@@ -150,8 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9dbdf975ab9f4ef6945b03faadf8ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tank3DModel1: {fileID: 2945766544490434592, guid: 0c752e6b1df8445978cd5732f6603336,
+  tankView: {fileID: 2945766544490434592, guid: 0c752e6b1df8445978cd5732f6603336,
     type: 3}
+  tankConfig:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &159771019
 Transform:
   m_ObjectHideFlags: 0

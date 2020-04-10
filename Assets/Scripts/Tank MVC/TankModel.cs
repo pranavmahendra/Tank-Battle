@@ -6,23 +6,20 @@ namespace BattleTank.Tank
 {
     public class TankModel
     {
+        
         //Constructor
-        public TankModel(int speed, int health, Color color)
+        public TankModel(TankScriptableObjects tankScriptableObject)
         {
-            Speed = speed;
-            Health = health;
-            Color = color;
-            
+            TankType = tankScriptableObject.TankType;
+            Speed = (int)tankScriptableObject.Speed;
+            Health = (int)tankScriptableObject.Health;
+            //Color = color;
         }
 
-        public int Speed;
-        public int Health;
-        public Color Color;
-       
-
-        public Rigidbody rb3d;
-
-      
+        public TankType TankType { get; }
+        public int Speed { get; private set; }
+        public int Health { get; private set; }
+        //public Color Color { get; private set; }
     }
 
     

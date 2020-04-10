@@ -8,10 +8,10 @@ namespace BattleTank.Tank
     {
 
         //This is Singleton class.
-        public TankView tank3DModel1;
 
-       
-       
+        public TankView tankView;
+
+        public TankScriptableObjects[] tankConfig;
 
         protected override void Awake()
         {
@@ -23,7 +23,11 @@ namespace BattleTank.Tank
 
         private void Start()
         {
-                CreateNewTank();  
+            for (int i=0; i < 3; i++)
+            {
+                CreateNewTank();
+            }
+                 
         }
 
       
@@ -31,25 +35,21 @@ namespace BattleTank.Tank
         //TankController.
         public  TankController CreateNewTank()
         {
+
+            TankScriptableObjects tankScriptableObject = tankConfig[1];
             //Created a first tank model, and prefab is the 3d model(prefab)
             //with which this TankView script is attached to.
-            TankModel tankModel1 = tank1();
+            TankModel tankModel1 = new TankModel(tankScriptableObject);
 
 
             //Created a new tankcontroller which is using reference of tankModel(Script) 
             //and Prefab with TankView attached.
-            TankController tankcontroller1 = new TankController(tankModel1, tank3DModel1);
+            TankController tankcontroller1 = new TankController(tankModel1, tankView);
 
 
             return tankcontroller1;
         }
 
-        //Create a tank1 model which is a static method.
-        public static TankModel tank1()
-        {
-            return new TankModel(40, 100, Color.blue);
-        } 
-      
     }
 }
 
