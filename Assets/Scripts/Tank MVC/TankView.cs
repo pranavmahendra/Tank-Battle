@@ -12,8 +12,7 @@ namespace BattleTank.Tank
 
         public TankType tankType;
 
-        private Renderer tankRenderer;
-
+        public GameObject missile;
 
         private Rigidbody rb3d;
         
@@ -25,8 +24,7 @@ namespace BattleTank.Tank
             tankType = tankController.GetModel().TankType;
 
             rb3d = GetComponent<Rigidbody>();
-            
-
+           
 
             Debug.Log("This is from TankView script.");
 
@@ -52,17 +50,10 @@ namespace BattleTank.Tank
             tankMovement();
 
             rotationMovement();
+
+            tankFire();
         }
 
-
-
-
-        //Set Color
-        //public void setColor()
-        //{
-        //    tankRenderer = GetComponentInChildren<MeshRenderer>();
-        //    tankRenderer.material.SetColor("_Color", tankController.GetModel().Color);
-        //}
 
 
         //Linking view and controller.
@@ -90,10 +81,19 @@ namespace BattleTank.Tank
 
             float rAxis = Input.GetAxis("Mouse Y");
 
-
             Vector3 rotation = new Vector3(transform.rotation.x, rAxis, transform.rotation.z) * Time.deltaTime;
             transform.RotateAround(rotation, rAxis);
 
+        }
+
+        public void tankFire()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(missile, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+                tankController.tankFire();
+            }
+            
         }
 
     }

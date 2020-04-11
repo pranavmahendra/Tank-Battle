@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace BattleTank.Tank
 {
     public class TankController 
@@ -39,7 +38,9 @@ namespace BattleTank.Tank
 
         public void tankFire()
         {
-            Debug.Log("Tank fired a bullet!!!!!!");
+            Debug.Log("Tank fired a bullet!!!!! " + GetModel().bulletType) ;
+
+      
         }
 
      }

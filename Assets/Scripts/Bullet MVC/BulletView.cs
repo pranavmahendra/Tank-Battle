@@ -9,20 +9,37 @@ namespace BattleTank.bullet
         public BulletController bulletController;
         public BulletType bulletType;
 
-        private void Start()
-        {
-            bulletType = bulletController.GetBulletModel().BulletType;
-        }
-
-        private void Update()
-        {
-
-        }
+        
 
         public void initialize(BulletController bulletController)
         {
             this.bulletController = bulletController;
         }
 
+
+        private void Start()
+        {
+     
+            //bullet type should be equal to that of tank.
+            //Giving an error on pressing space.
+            bulletType = bulletController.GetBulletModel().BulletType;
+
+            Debug.Log("This is from Bullet View");
+        }
+
+        private void Update()
+        {
+            bulletMovement();
+        }
+
+        
+
+        public void bulletMovement()
+        {
+
+            transform.Translate(Vector3.forward * 2f * Time.deltaTime);
+        }
+
+       
     }
 }

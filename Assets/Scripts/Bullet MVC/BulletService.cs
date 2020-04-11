@@ -8,17 +8,16 @@ namespace BattleTank.bullet
     {
         public BulletView bulletView;
         public BulletModel bulletModel;
+        public BulletController bulletController;
+     
 
         public BulletScriptableObjectList bulletList;
 
+     
         private void Start()
         {
             Debug.Log("This message is from bullet service.");
-
-            for(int i = 0; i < 3; i++)
-            {
-                CreateNewBullet(i);
-            }
+            
 
         }
 
@@ -33,7 +32,8 @@ namespace BattleTank.bullet
             return bulletController;
         }
 
-    }
 
+     
+    }
 
 }

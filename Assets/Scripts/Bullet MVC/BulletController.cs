@@ -17,11 +17,15 @@ namespace BattleTank.bullet
 
         public BulletModel BulletModel { get; }
         public BulletView BulletView { get; }
+        public BulletScriptableObjectList BulletScriptableObjectList;
 
         public BulletModel GetBulletModel()
         {
             return BulletModel;
         }
+
+       
+
     }
 }
 

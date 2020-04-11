@@ -153,6 +153,7 @@ MonoBehaviour:
   tankView: {fileID: 2945766544490434592, guid: 0c752e6b1df8445978cd5732f6603336,
     type: 3}
   tankList: {fileID: 11400000, guid: 524f350969d344b959e361af7e0f2b87, type: 2}
+  bulletService: {fileID: 186099076}
 --- !u!4 &159771019
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +462,6 @@ GameObject:
   - component: {fileID: 1391056262}
   - component: {fileID: 1391056261}
   - component: {fileID: 1391056260}
-  - component: {fileID: 1391056265}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -551,18 +551,6 @@ Transform:
   m_Father: {fileID: 1771596987}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1391056265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391056259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1771596986
 GameObject:
   m_ObjectHideFlags: 0

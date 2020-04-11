@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BattleTank.bullet;
+
 
 namespace BattleTank.Tank
 {
@@ -13,21 +15,18 @@ namespace BattleTank.Tank
 
         public TankScriptableObjectList tankList;
 
-   
-
-        protected override void Awake()
-        {
-            base.Awake();
-            Debug.Log("This message is from Tank Service");
-            
-        }
+        public  BulletService bulletService;
 
 
         private void Start()
         {
+            Debug.Log("This message is from Tank Service");
+            
+
             for (int i=0; i < 3; i++)
             {
                 CreateNewTank(i);
+                
             }
                  
         }
@@ -53,7 +52,8 @@ namespace BattleTank.Tank
             return tankcontroller1;
         }
 
-
+       
+       
     }
 }
 
