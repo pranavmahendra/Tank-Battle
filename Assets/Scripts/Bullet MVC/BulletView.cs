@@ -7,22 +7,10 @@ namespace BattleTank.bullet
     public class BulletView : MonoBehaviour
     {
         public BulletController bulletController;
-        public BulletType bulletType;
-
-        
-
-        public void initialize(BulletController bulletController)
-        {
-            this.bulletController = bulletController;
-        }
-
+  
 
         private void Start()
         {
-     
-            //bullet type should be equal to that of tank.
-            //Giving an error on pressing space.
-            bulletType = bulletController.GetBulletModel().BulletType;
 
             Debug.Log("This is from Bullet View");
         }
@@ -30,9 +18,16 @@ namespace BattleTank.bullet
         private void Update()
         {
             bulletMovement();
+
+            destoryBullet();
         }
 
-        
+        //Linking view and controller.
+        public void Initialize(BulletController controller)
+        {
+            this.bulletController = controller;
+        }
+
 
         public void bulletMovement()
         {
@@ -40,6 +35,11 @@ namespace BattleTank.bullet
             transform.Translate(Vector3.forward * 2f * Time.deltaTime);
         }
 
+        //Destroy bullet.
+        public void destoryBullet()
+        {
+            Destroy(gameObject, 3f);
+        }
        
     }
 }

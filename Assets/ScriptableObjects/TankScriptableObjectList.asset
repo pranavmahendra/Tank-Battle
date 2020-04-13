@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TankScriptableObjectList
   m_EditorClassIdentifier: 
   tanks:
+  - {fileID: 0}
   - {fileID: 11400000, guid: d74e5d1c680454d599fc91f9933108a7, type: 2}
   - {fileID: 11400000, guid: 11f035c40b5264ce0aaeadc5ab575053, type: 2}
   - {fileID: 11400000, guid: 5c648c12755d04f62a70dfbb62293cef, type: 2}

@@ -9,51 +9,46 @@ namespace BattleTank.Tank
     public class TankService : MonosingletonGeneric<TankService>
     {
 
-        //This is Singleton class.
+        private TankController tankController;
+        private TankModel _tankModel;
+        public TankView _tankView;
 
-        public TankView tankView;
+        private TankScriptableObjects _tankScriptableObject;
+        public TankScriptableObjectList _tankScriptableObjectList;
 
-        public TankScriptableObjectList tankList;
+        public BulletService _bulletService;
 
-        public  BulletService bulletService;
+        public int combinationCreation;
 
-
+      
         private void Start()
         {
-            Debug.Log("This message is from Tank Service");
+            _bulletService = BulletService.Instance;
+            _tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
             
+  
+            Debug.Log(CreateNewTank().TankModel.TankType + " Tank is created.");
+            Debug.Log(_bulletService.CreateNewBullet(combinationCreation).BulletModel.BulletType + " This bullet is fired from Tank Service.");
 
-            for (int i=0; i < 3; i++)
-            {
-                CreateNewTank(i);
-                
-            }
-                 
+
         }
-      
-        //Method for creating new TC. This is returning
-        //TankController.
-        public  TankController CreateNewTank(int index)
+
+
+       public TankController CreateNewTank()
         {
+            //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
+            //Extract number from tankObjectlist and apply that value as TSO.
 
-            TankScriptableObjects tankScriptableObject = tankList.tanks[index];
-            Debug.Log("Created type of tank is" + tankScriptableObject.TankType);
-
-            //Created a first tank model, and prefab is the 3d model(prefab)
-            //with which this TankView script is attached to.
-            TankModel tankModel1 = new TankModel(tankScriptableObject);
+            _tankScriptableObject = _tankScriptableObjectList.tanks[combinationCreation];
+            _tankModel = new TankModel(_tankScriptableObject);
 
 
-            //Created a new tankcontroller which is using reference of tankModel(Script) 
-            //and Prefab with TankView attached.
-            TankController tankcontroller1 = new TankController(tankModel1, tankView);
+            //initialize the value of TC.
+            tankController = new TankController(_tankModel, _tankView);
 
-
-            return tankcontroller1;
+            return tankController;
         }
 
-       
-       
     }
 }
 

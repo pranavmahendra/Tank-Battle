@@ -12,20 +12,20 @@ namespace BattleTank.bullet
 
             BulletView = GameObject.Instantiate<BulletView>(bulletPrefab);
 
-            BulletView.initialize(this);
+            BulletView.Initialize(this);
         }
 
         public BulletModel BulletModel { get; }
         public BulletView BulletView { get; }
-        public BulletScriptableObjectList BulletScriptableObjectList;
+       
 
         public BulletModel GetBulletModel()
         {
             return BulletModel;
         }
 
-       
 
     }
+
 }
 

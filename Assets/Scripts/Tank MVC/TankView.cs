@@ -5,96 +5,47 @@ using UnityEngine;
 
 namespace BattleTank.Tank
 {
-    public class TankView : MonoBehaviour
+    public class TankView : MonoBehaviour 
     {
 
         private TankController tankController;
 
-        public TankType tankType;
-
-        public GameObject missile;
-
-        private Rigidbody rb3d;
-        
-       
-
-
         private void Start()
         {
-            tankType = tankController.GetModel().TankType;
 
-            rb3d = GetComponent<Rigidbody>();
-           
-
-            Debug.Log("This is from TankView script.");
-
-
-            //Debug.Log("Position of Tank1 is " + currentValues);
+            Debug.Log("This tank view is of " + tankController.TankModel.TankType);
 
         }
-
-
 
         private void Update()
         {
+            fireOnPress();
 
+            tankController.movement();
 
-            //Call TankFire method from the tank controller script.
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                tankController.tankFire();
-                //Debug.Log("Tank is now firing");
+            tankController.mouseRotation();
 
-            }
-
-            tankMovement();
-
-            rotationMovement();
-
-            tankFire();
-        }
-
-
-
-        //Linking view and controller.
-        public void Initialize(TankController controller)
-        {
-            this.tankController = controller;
-        }
-
-
-
-        //Tank Movement
-        public void tankMovement()
-        {
-            float hAxis = Input.GetAxis("Horizontal1");
-            float vAxis = Input.GetAxis("Vertical1");
-
-            Vector3 movement = new Vector3(hAxis, 0, vAxis) * tankController.GetModel().Speed * Time.deltaTime;
-
-            rb3d.MovePosition(transform.position + movement);
-        }
-
-        //Tank Rotation
-        public void rotationMovement()
-        {
-
-            float rAxis = Input.GetAxis("Mouse Y");
-
-            Vector3 rotation = new Vector3(transform.rotation.x, rAxis, transform.rotation.z) * Time.deltaTime;
-            transform.RotateAround(rotation, rAxis);
-
-        }
-
-        public void tankFire()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Instantiate(missile, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
-                tankController.tankFire();
-            }
             
         }
+
+        //Initialization Method.
+        public void initialize(TankController tankController)
+        {
+            this.tankController = tankController;
+        }
+
+
+        //Fire on press.
+        public void fireOnPress()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                tankController.tankFire();
+            }
+        }
+
+ 
+    
 
     }
 }

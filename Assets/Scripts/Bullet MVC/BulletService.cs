@@ -6,34 +6,39 @@ namespace BattleTank.bullet
 {
     public class BulletService : MonosingletonGeneric<BulletService>
     {
-        public BulletView bulletView;
-        public BulletModel bulletModel;
-        public BulletController bulletController;
-     
+        private BulletModel _bulletModel;
+        private BulletController _bulletController;
+        public BulletView _bulletView;
+
 
         public BulletScriptableObjectList bulletList;
+        private BulletScriptableObject bulletScriptableObject;
 
-     
+
         private void Start()
         {
+
+            bulletScriptableObject = ScriptableObject.CreateInstance<BulletScriptableObject>();
             Debug.Log("This message is from bullet service.");
-            
+
+
+
+            //Debug.Log("The bullet being created is " + CreateNewBullet(1).BulletModel.BulletType);
 
         }
 
         public BulletController CreateNewBullet(int index)
         {
-            BulletScriptableObject bulletScriptableObject = bulletList.bullets[index];
-            BulletModel bulletModel = new BulletModel(bulletScriptableObject);
+            bulletScriptableObject = bulletList.bullets[index];
+            _bulletModel = new BulletModel(bulletScriptableObject);
 
-            BulletController bulletController = new BulletController(bulletModel, bulletView);
+            _bulletController = new BulletController(_bulletModel,_bulletView);
 
-
-            return bulletController;
+            return _bulletController;
         }
 
 
-     
+
     }
 
 }
