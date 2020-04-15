@@ -193,6 +193,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 512
+  particles: {fileID: 19874418, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
 --- !u!54 &2247181421640305775
 Rigidbody:
   m_ObjectHideFlags: 0

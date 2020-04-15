@@ -12,12 +12,17 @@ namespace BattleTank.Tank
 
         public Transform barrelTip;
         public LayerMask rayMask;
+
+        public ParticleSystem particle;
     
 
         private void Start()
         {
+            
 
             Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+
+            
 
         }
 
@@ -48,11 +53,18 @@ namespace BattleTank.Tank
             if(collision.gameObject.GetComponent<EnemyView>() != null)
             {
                 Debug.Log("Player has collided with enemy tank. GAME OVER");
-                SceneManager.LoadScene(0);
+
+                StartCoroutine(restartScene(10));
+                
             }
         }
 
+         private IEnumerator restartScene(float seconds)
+        {
+            SceneManager.LoadScene(0);
 
+            yield return new WaitForSeconds(seconds);
+        }
 
     }
 }
