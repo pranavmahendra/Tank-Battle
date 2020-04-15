@@ -4,36 +4,56 @@ using UnityEngine;
 
 public class SpawnService : MonosingletonGeneric<SpawnService>
 {
-    public EnemyView _enemyView;
-    
+
+    public EnemyService enemyService;
+    private EnemyView enemyView;
+
+    private IEnumerator spawnEnumerator;
+
 
     private void Start()
     {
-        _enemyView = Resources.Load<EnemyView>("EnemyTank");
-        StartCoroutine(spawnEnemy(10));
+        enemyService = EnemyService.Instance;
+        spawnEnumerator = spawnEnemy(5);
+
+
+        StartCoroutine(spawnEnumerator);
 
     }
 
     private void Update()
     {
-        
+        //Random spawning
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Debug.Log("Spawn when S is pressed");
+            SpawnEnemyTank(new Vector3(Random.Range(-11f, 20f), 0f, Random.Range(-8f, 11f)), Quaternion.identity);
+        }
     }
 
     private IEnumerator spawnEnemy(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
-
-        Instantiate(_enemyView, new Vector3(12.0f, 0f, -10f), Quaternion.identity);
-
-        yield return new WaitForSeconds(seconds);
-
-        Instantiate(_enemyView, new Vector3(5f, 0f, 17f), Quaternion.identity);
+        
+        SpawnEnemyTank(new Vector3(-11f, 0f, 11f) , Quaternion.identity);
 
         yield return new WaitForSeconds(seconds);
 
-        Instantiate(_enemyView, new Vector3(2.0f, 0f, -20f), Quaternion.identity);
+        SpawnEnemyTank(new Vector3(6f, 0f, -12f), Quaternion.identity);
 
-
-        yield return new WaitForSeconds(seconds);
+        Debug.Log("This coroutine has finished its job.");
     }
+
+
+    //Controller creation method.
+    public void SpawnEnemyTank(Vector3 enemySpawnerPos, Quaternion enemyRotation)
+    {
+        EnemyModel model = new EnemyModel(enemyService.enemyTankScriptableObject);
+        EnemyController enemyController = new EnemyController(model, enemyService.enemyView);
+
+        enemyService.enemyView.transform.position = enemySpawnerPos;
+        enemyService.enemyView.transform.rotation = enemyRotation;
+        
+    }
+
+    
 }

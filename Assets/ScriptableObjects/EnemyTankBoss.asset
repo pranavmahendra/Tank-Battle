@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyTankBoss
   m_EditorClassIdentifier: 
   enemyType: 2
-  speed: 35
+  speed: 2
   health: 150

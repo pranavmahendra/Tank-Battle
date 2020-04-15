@@ -22,5 +22,12 @@ public class EnemyController
         return EnemyModel;
     }
 
+    public void EnemyZMovement()
+    {
+        EnemyView.transform.Translate(new Vector3(0f, 0f, 1f) * EnemyModel.Speed * Time.deltaTime);
+    }
+
+    
+
 
 }

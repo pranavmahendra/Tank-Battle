@@ -5,27 +5,27 @@ using UnityEngine;
 public class EnemyService : MonosingletonGeneric<EnemyService>
 {
 
-    private EnemyModel _enemyModel;
-    public EnemyView _enemyView;
-    private EnemyController _enemyController;
+    private EnemyModel enemyModel;
+    public EnemyView enemyView;
+    public EnemyController enemyController;
 
-    [SerializeField]
-    private EnemyTankScriptableObject enemyTankScriptableObject;
+   
+
+    
+    public EnemyTankScriptableObject enemyTankScriptableObject;
  
     private void Start()
     {
-
-
-        CreateEnemyTank();
+        
     }
 
     public EnemyController CreateEnemyTank()
     {
-        _enemyModel = new EnemyModel(enemyTankScriptableObject);
+        enemyModel = new EnemyModel(enemyTankScriptableObject);
 
-        _enemyController = new EnemyController(_enemyModel, _enemyView);
+        enemyController = new EnemyController(enemyModel, enemyView);
 
-        return _enemyController;
+        return enemyController;
  
     }
 

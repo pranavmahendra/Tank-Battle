@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace BattleTank.Tank
 {
@@ -9,6 +9,10 @@ namespace BattleTank.Tank
     {
 
         private TankController tankController;
+
+        public Transform barrelTip;
+        public LayerMask rayMask;
+    
 
         private void Start()
         {
@@ -19,7 +23,10 @@ namespace BattleTank.Tank
 
         private void Update()
         {
-            fireOnPress();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                tankController.tankFire();
+            }
 
             tankController.movement();
 
@@ -35,17 +42,17 @@ namespace BattleTank.Tank
         }
 
 
-        //Fire on press.
-        public void fireOnPress()
+        //Collision with enemy tank.
+        private void OnCollisionEnter(Collision collision)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(collision.gameObject.GetComponent<EnemyView>() != null)
             {
-                tankController.tankFire();
+                Debug.Log("Player has collided with enemy tank. GAME OVER");
+                SceneManager.LoadScene(0);
             }
         }
 
- 
-    
+
 
     }
 }

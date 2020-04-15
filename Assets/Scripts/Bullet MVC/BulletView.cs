@@ -32,14 +32,26 @@ namespace BattleTank.bullet
         public void bulletMovement()
         {
 
-            transform.Translate(Vector3.forward * 2f * Time.deltaTime);
+            transform.Translate(Vector3.forward * 10f * Time.deltaTime);
         }
 
         //Destroy bullet.
         public void destoryBullet()
         {
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 2f);
         }
-       
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.GetComponent<EnemyView>() != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                destoryBullet();
+            }
+        }
+
     }
 }

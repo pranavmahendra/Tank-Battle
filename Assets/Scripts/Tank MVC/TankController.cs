@@ -22,17 +22,36 @@ namespace BattleTank.Tank
         public TankModel TankModel { get; }
         public TankView TankView { get; }
 
+        public float appliedForce = 5f;
+        public float rayDistance = 100f;
+        
+
     
         public TankModel getModel()
         {
             return TankModel;
         }
 
+
+        //Tank Fire Logic.
         public void tankFire()
         {
             Debug.Log("Tank Fired a bullet ");
+            Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
+            
+            TankService.Instance.bulletService.CreateNewBullet(new Vector3(TankView.barrelTip.position.x, TankView.barrelTip.position.y, TankView.barrelTip.position.z),Quaternion.LookRotation(TankView.barrelTip.forward), 1);
+
+            //TankService.Instance._bulletService.CreateNewBullet(new Vector3(6f,0f,-13f), Quaternion.identity, 1);
+
+            RaycastHit hit;
+            if(Physics.Raycast(TankView.barrelTip.position, TankView.barrelTip.forward, out hit, rayDistance, TankView.rayMask))
+            {
+                if (hit.rigidbody != null)
+                {
+                    Debug.Log("Missile has hit enemy tank");
+                }
+            }
            
-            TankService.Instance._bulletService.CreateNewBullet(1);
             
         }
 
@@ -66,6 +85,8 @@ namespace BattleTank.Tank
         {
             return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
         }
+
+        
 
     }
 

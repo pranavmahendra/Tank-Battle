@@ -6,9 +6,9 @@ namespace BattleTank.bullet
 {
     public class BulletService : MonosingletonGeneric<BulletService>
     {
-        private BulletModel _bulletModel;
-        private BulletController _bulletController;
-        public BulletView _bulletView;
+        private BulletModel bulletModel;
+        private BulletController bulletController;
+        public BulletView bulletView;
 
 
         public BulletScriptableObjectList bulletList;
@@ -27,14 +27,17 @@ namespace BattleTank.bullet
 
         }
 
-        public BulletController CreateNewBullet(int index)
+        public BulletController CreateNewBullet(Vector3 bulletSpawnPosition,Quaternion bulletSpawnRotation,int index)
         {
             bulletScriptableObject = bulletList.bullets[index];
-            _bulletModel = new BulletModel(bulletScriptableObject);
+            bulletModel = new BulletModel(bulletScriptableObject);
 
-            _bulletController = new BulletController(_bulletModel,_bulletView);
+            bulletController = new BulletController(bulletModel,bulletView);
 
-            return _bulletController;
+            bulletView.transform.position = bulletSpawnPosition;
+            bulletView.transform.rotation = bulletSpawnRotation;
+
+            return bulletController;
         }
 
 
