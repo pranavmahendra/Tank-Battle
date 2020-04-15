@@ -61,6 +61,10 @@ namespace BattleTank.Tank
 
          private IEnumerator restartScene(float seconds)
         {
+            particle.Play();
+
+            yield return new WaitForSeconds(seconds);
+
             SceneManager.LoadScene(0);
 
             yield return new WaitForSeconds(seconds);
