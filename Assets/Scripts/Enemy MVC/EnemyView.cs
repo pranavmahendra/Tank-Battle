@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
 
-public class EnemyView : MonoBehaviour
+public class EnemyView : MonoBehaviour, IDamagable
 {
     public EnemyController enemyController;
     public Rigidbody rb3d;
@@ -25,12 +25,9 @@ public class EnemyView : MonoBehaviour
 
     //Destroy enemy on collision with bullet.
 
-    private void OnCollisionEnter(Collision collision)
+    public void TakeDamage(BulletType bullettype, int damage)
     {
-        if(collision.gameObject.GetComponent<BulletView>() != null)
-        {
-            Debug.Log("Enemy tank has been destroyed.");
-            Destroy(gameObject);
-        }
+        Debug.Log("Taking damage " + damage);
+        enemyController.ApplyDamage(damage);
     }
 }

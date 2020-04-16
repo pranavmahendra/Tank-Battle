@@ -13,5 +13,5 @@ public class EnemyModel
 
     public EnemyType EnemyType { get; }
     public float Speed { get; }
-    public float Health { get; }
+    public float Health { get; set; }
 }

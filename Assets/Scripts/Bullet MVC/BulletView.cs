@@ -41,15 +41,14 @@ namespace BattleTank.bullet
             Destroy(gameObject, 2f);
         }
 
+        //Damage
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.GetComponent<EnemyView>() != null)
+            IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+            if (damagable != null)
             {
+                damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
                 Destroy(gameObject);
-            }
-            else
-            {
-                destoryBullet();
             }
         }
 

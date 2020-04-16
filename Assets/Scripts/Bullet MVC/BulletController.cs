@@ -24,8 +24,14 @@ namespace BattleTank.bullet
             return BulletModel;
         }
 
-        
+        //Function to set position of bullet.
+        public void setPosition(Vector3 bulletPosition, Quaternion bulletRotation)
+        {
+            BulletView.transform.position = bulletPosition;
+            BulletView.transform.rotation = bulletRotation;
+        }
 
+       
     }
 
 }

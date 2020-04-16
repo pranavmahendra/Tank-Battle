@@ -54,7 +54,7 @@ namespace BattleTank.Tank
             {
                 Debug.Log("Player has collided with enemy tank. GAME OVER");
 
-                StartCoroutine(restartScene(10));
+                StartCoroutine(restartScene(3));
                 
             }
         }
@@ -62,13 +62,14 @@ namespace BattleTank.Tank
          private IEnumerator restartScene(float seconds)
         {
             particle.Play();
-
+           
             yield return new WaitForSeconds(seconds);
 
+            
             SceneManager.LoadScene(0);
-
-            yield return new WaitForSeconds(seconds);
+            
         }
 
+      
     }
 }
