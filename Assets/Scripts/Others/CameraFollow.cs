@@ -10,14 +10,14 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
 
     public TankView tankView;
 
-    [SerializeField]
-    private float xMax;
-    [SerializeField]
-    private float xMin;
-    [SerializeField]
-    private float yMax;
-    [SerializeField]
-    private float yMin;
+    //[SerializeField]
+    //private float xMax;
+    //[SerializeField]
+    //private float xMin;
+    //[SerializeField]
+    //private float yMax;
+    //[SerializeField]
+    //private float yMin;
 
 
 
