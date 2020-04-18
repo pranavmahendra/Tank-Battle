@@ -3,31 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
 
-public class EnemyView : MonoBehaviour, IDamagable
+namespace BattleTank.EnemyTank
 {
-    public EnemyController enemyController;
-    public Rigidbody rb3d;
-
-    private void Start()
+    public class EnemyView : MonoBehaviour, IDamagable
     {
-        
-    }
+        public EnemyController enemyController;
+  
+        private Enemeystate currentState;
 
-    private void Update()
-    {
-        //_enemyController.EnemyZMovement();
-    }
+        [SerializeField]
+        public IdleState idleState;
+        [SerializeField]
+        public EnemyPatroling patrolingState;
 
-    public void initialize(EnemyController enemyController)
-    {
-        this.enemyController = enemyController;
-    }
+        [SerializeField]
+        private Enemeystate startingState;
 
-    //Destroy enemy on collision with bullet.
+        private void Start()
+        {
+            ChangeState(startingState);
+        }
 
-    public void TakeDamage(BulletType bullettype, int damage)
-    {
-        Debug.Log("Taking damage " + damage);
-        enemyController.ApplyDamage(damage);
+        private void Update()
+        {
+            //_enemyController.EnemyZMovement();
+        }
+
+        public void initialize(EnemyController enemyController)
+        {
+            this.enemyController = enemyController;
+        }
+
+        //Destroy enemy on collision with bullet.
+
+        public void TakeDamage(BulletType bullettype, int damage)
+        {
+            Debug.Log("Taking damage " + damage);
+            enemyController.ApplyDamage(damage);
+        }
+
+        public void ChangeState(Enemeystate newState)
+        {
+            if (currentState != null)
+            {
+                currentState.OnExitState();
+            }
+
+            currentState = newState;
+
+            currentState.OnStateEnter();
+        }
+
     }
 }

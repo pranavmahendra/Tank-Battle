@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BattleTank.EnemyTank;
 
 namespace BattleTank.Tank
 {
     public class TankView : MonoBehaviour 
     {
 
-        private TankController tankController;
+        public TankController tankController;
 
         public Transform barrelTip;
         public LayerMask rayMask;

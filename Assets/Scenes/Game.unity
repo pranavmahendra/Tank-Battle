@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankView: {fileID: 2945766544490434592, guid: 0c752e6b1df8445978cd5732f6603336,
     type: 3}
-  _tankScriptableObjectList: {fileID: 11400000, guid: 524f350969d344b959e361af7e0f2b87,
+  tankScriptableObjectList: {fileID: 11400000, guid: 524f350969d344b959e361af7e0f2b87,
     type: 2}
   bulletService: {fileID: 0}
   combinationCreation: 3
@@ -638,7 +638,7 @@ Transform:
   m_GameObject: {fileID: 1391056259}
   m_LocalRotation: {x: 0.000000007450581, y: -0.0000000037252903, z: -0.000000014901161,
     w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: -65}
+  m_LocalPosition: {x: 0, y: 0, z: -65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1771596987}
