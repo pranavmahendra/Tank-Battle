@@ -16,12 +16,12 @@ namespace BattleTank.EnemyTank
         [SerializeField]
         public EnemyPatroling patrolingState;
 
-        [SerializeField]
-        private Enemeystate startingState;
+        //[SerializeField]
+        //private Enemeystate startingState;
 
         private void Start()
         {
-            ChangeState(startingState);
+            ChangeState(idleState);
         }
 
         private void Update()
@@ -35,7 +35,6 @@ namespace BattleTank.EnemyTank
         }
 
         //Destroy enemy on collision with bullet.
-
         public void TakeDamage(BulletType bullettype, int damage)
         {
             Debug.Log("Taking damage " + damage);
@@ -52,6 +51,12 @@ namespace BattleTank.EnemyTank
             currentState = newState;
 
             currentState.OnStateEnter();
+        }
+
+        public void enemyDestroyView(EnemyView enemyView)
+        {
+            Destroy(enemyView.gameObject);
+            enemyView = null;   
         }
 
     }

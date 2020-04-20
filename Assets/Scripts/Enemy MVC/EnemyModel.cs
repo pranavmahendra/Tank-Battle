@@ -16,6 +16,13 @@ namespace BattleTank.EnemyTank
         public EnemyType EnemyType { get; }
         public float Speed { get; }
         public float Health { get; set; }
-    }
 
+        //Setting enemymodel to null.
+        public void modelDestroy(EnemyModel enemyModel)
+        {
+            enemyModel = null;
+        }
+
+    }
+ 
 }

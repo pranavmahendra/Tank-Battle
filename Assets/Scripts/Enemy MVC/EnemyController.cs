@@ -41,7 +41,8 @@ namespace BattleTank.EnemyTank
         {
             if (EnemyModel.Health - damage <= 0)
             {
-                EnemyView.Destroy(EnemyView.gameObject);
+                //Destroy function being called from service.
+                EnemyService.Instance.DestroyEnemyTank(this);
             }
             else
             {
@@ -49,7 +50,13 @@ namespace BattleTank.EnemyTank
                 Debug.Log("Enemy took damage " + EnemyModel.Health);
             }
         }
-
+        
+        public void DestroyStuff()
+        {
+            EnemyModel.modelDestroy(getModel());
+            EnemyView.enemyDestroyView(this.EnemyView);
+ 
+        }
 
     }
 

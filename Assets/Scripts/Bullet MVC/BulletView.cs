@@ -18,8 +18,8 @@ namespace BattleTank.bullet
         private void Update()
         {
             bulletMovement();
-
-            destoryBullet();
+            bulletController.randomBulletsDestroy();
+         
         }
 
         //Linking view and controller.
@@ -28,19 +28,14 @@ namespace BattleTank.bullet
             this.bulletController = controller;
         }
 
-
+        //Bullet movement.
         public void bulletMovement()
         {
 
             transform.Translate(Vector3.forward * 10f * Time.deltaTime);
         }
 
-        //Destroy bullet.
-        public void destoryBullet()
-        {
-            Destroy(gameObject, 2f);
-        }
-
+ 
         //Damage
         private void OnCollisionEnter(Collision collision)
         {
@@ -48,9 +43,18 @@ namespace BattleTank.bullet
             if (damagable != null)
             {
                 damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
+                //Destroy Bullet
+                //BulletService.Instance.DestroyBullet(this.bulletController);
                 Destroy(gameObject);
+                BulletService.Instance.DestroyBullet(bulletController);
             }
         }
 
+        //Destroy BulletView.
+        public void DestroyBulletView(BulletView bulletviewDes)
+        {
+            Destroy(bulletviewDes.gameObject, 2f);
+            bulletviewDes = null;
+        }
     }
 }

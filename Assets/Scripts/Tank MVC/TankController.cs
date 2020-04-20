@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
@@ -6,6 +7,7 @@ using BattleTank.bullet;
 
 namespace BattleTank.Tank
 {
+
     public class TankController
     {
         
@@ -39,9 +41,9 @@ namespace BattleTank.Tank
             Debug.Log("Tank Fired a bullet ");
             Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
             
-            TankService.Instance.bulletService.CreateNewBullet(1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
-
-            //TankService.Instance._bulletService.CreateNewBullet(new Vector3(6f,0f,-13f), Quaternion.identity, 1);
+            
+            BulletService.Instance.CreateNewBullet(1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
+            
 
             RaycastHit hit;
             if(Physics.Raycast(TankView.barrelTip.position, TankView.barrelTip.forward, out hit, rayDistance, TankView.rayMask))
@@ -86,8 +88,7 @@ namespace BattleTank.Tank
             return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
         }
 
-   
-
+ 
     }
 
 }

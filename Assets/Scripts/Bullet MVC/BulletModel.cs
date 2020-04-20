@@ -15,6 +15,15 @@ namespace BattleTank.bullet
 
         public BulletType BulletType { get; }
         public int Damage { get; }
+
+
+        public void DestroyBulletModel(BulletModel bulletModel)
+        {
+            bulletModel = null;
+        }
+
     }
+
+
 
 }

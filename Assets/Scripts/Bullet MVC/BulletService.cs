@@ -37,7 +37,10 @@ namespace BattleTank.bullet
             return bulletController;
         }
 
-
+        public void DestroyBullet(BulletController bulletController)
+        {
+            bulletController.bulletDestroy();
+        }
 
     }
 

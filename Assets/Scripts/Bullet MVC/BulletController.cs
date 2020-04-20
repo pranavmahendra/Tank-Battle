@@ -31,7 +31,19 @@ namespace BattleTank.bullet
             BulletView.transform.rotation = bulletRotation;
         }
 
-       
+        //Destroy logic.
+        public void bulletDestroy()
+        {
+            BulletModel.DestroyBulletModel(GetBulletModel());
+            BulletView.DestroyBulletView(this.BulletView);
+        }
+
+
+        //Destroy Random Bullets.
+        public void randomBulletsDestroy()
+        {
+            BulletService.Instance.DestroyBullet(this);
+        }
     }
 
 }
