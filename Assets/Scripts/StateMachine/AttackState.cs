@@ -20,14 +20,11 @@ public class AttackState : Enemeystate
 
     //private void OnTriggerEnter(Collider collision)
     //{
-    //    if(collision.gameObject.GetComponent<TankView>() != null && enemyView.attackingCollider == true)
+    //    if (collision.gameObject.GetComponent<TankView>() != null && enemyView.attackingCollider == true)
     //    {
     //        enemyView.ChangeState(enemyView.attackState);
     //    }
-    //    else
-    //    {
-    //        enemyView.ChangeState(enemyView.patrolingState);
-    //    }
+       
 
     //}
 }

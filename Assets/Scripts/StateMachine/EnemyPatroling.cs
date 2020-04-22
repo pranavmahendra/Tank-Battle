@@ -57,15 +57,15 @@ public class EnemyPatroling : Enemeystate
         {
             enemyView.ChangeState(enemyView.idleState);
         }
-
-        
+       
     }
 
+   
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<TankView>() != null && enemyView.patrolingCollider == true)
+        if (other.GetComponent<TankView>() != null && enemyView.attackingCollider == true)
         {
-            enemyView.ChangeState(enemyView.patrolingState);
+            enemyView.ChangeState(enemyView.attackState);
         }
 
     }

@@ -36,10 +36,8 @@ public class IdleState : Enemeystate
         {
             enemyView.ChangeState(enemyView.patrolingState);
         }
-        else
-        {
-            enemyView.ChangeState(enemyView.idleState);
-        }
+        
+       
 
     }
 }
