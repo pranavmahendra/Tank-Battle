@@ -9,16 +9,19 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
     public EnemyService enemyService;
     private EnemyView enemyView;
 
-    private IEnumerator spawnEnumerator;
+    private Coroutine spawnEnumerator;
 
 
     private void Start()
     {
         enemyService = EnemyService.Instance;
-        spawnEnumerator = spawnEnemy(5);
+        if(spawnEnumerator != null)
+        {
+            StopCoroutine(spawnEnumerator);
+        }
 
 
-        StartCoroutine(spawnEnumerator);
+        spawnEnumerator = StartCoroutine(spawnEnemy(5));
 
     }
 
@@ -41,7 +44,7 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
 
         yield return new WaitForSeconds(seconds);
 
-        enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(6f, 0f, -13f), Quaternion.identity);
+        //enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(6f, 0f, -13f), Quaternion.identity);
 
 
         Debug.Log("This coroutine has finished its job.");

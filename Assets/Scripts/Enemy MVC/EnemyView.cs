@@ -8,16 +8,20 @@ namespace BattleTank.EnemyTank
     public class EnemyView : MonoBehaviour, IDamagable
     {
         public EnemyController enemyController;
-  
+
         private Enemeystate currentState;
+
+        public Collider patrolingCollider;
+        public Collider attackingCollider;
 
         [SerializeField]
         public IdleState idleState;
         [SerializeField]
         public EnemyPatroling patrolingState;
+        [SerializeField]
+        public AttackState attackState;
 
-        //[SerializeField]
-        //private Enemeystate startingState;
+
 
         private void Start()
         {

@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.EnemyTank;
+using BattleTank.Tank;
 
 public class IdleState : Enemeystate
 {
     private float timeElapsed;
+    //private Collider patrolingCollider;
 
     public override void OnStateEnter()
     {
+        //patrolingCollider = enemyView.activations[0];
+
         base.OnStateEnter();
+        timeElapsed = 0f;
+        transform.position = new Vector3(enemyView.transform.position.x, enemyView.transform.position.y, enemyView.transform.position.z);
         Debug.Log("Tank has entered idle state");
     }
 
@@ -21,10 +27,19 @@ public class IdleState : Enemeystate
 
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
-        if(timeElapsed > 5f)
+    
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<TankView>() != null && enemyView.patrolingCollider == true)
         {
             enemyView.ChangeState(enemyView.patrolingState);
         }
+        else
+        {
+            enemyView.ChangeState(enemyView.idleState);
+        }
+
     }
 }
