@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TankType: 3
   TankName: Blue Tank A
-  Speed: 20
+  Speed: 6
   Health: 100
   bullet: 2
   bulletDetails: {fileID: 11400000, guid: 8d7fc967936de4f388e6e2e013750321, type: 2}

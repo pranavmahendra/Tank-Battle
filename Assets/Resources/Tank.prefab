@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: -7274200767097429574}
   m_Layer: 8
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: PlayerTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7107473347305937169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0501442, y: 0, z: 1.1403104}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1403104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7107473346660474917}
@@ -193,7 +193,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 512
-  particles: {fileID: 19874418, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+  particle: {fileID: 19874418, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
 --- !u!54 &2247181421640305775
 Rigidbody:
   m_ObjectHideFlags: 0

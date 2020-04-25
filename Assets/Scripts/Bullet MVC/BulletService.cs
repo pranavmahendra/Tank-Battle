@@ -27,20 +27,20 @@ namespace BattleTank.bullet
 
         }
 
-        public BulletController CreateNewBullet(Vector3 bulletSpawnPosition,Quaternion bulletSpawnRotation,int index)
+        public BulletController CreateNewBullet(int index)
         {
             bulletScriptableObject = bulletList.bullets[index];
             bulletModel = new BulletModel(bulletScriptableObject);
 
             bulletController = new BulletController(bulletModel,bulletView);
 
-            bulletView.transform.position = bulletSpawnPosition;
-            bulletView.transform.rotation = bulletSpawnRotation;
-
             return bulletController;
         }
 
-
+        public void DestroyBullet(BulletController bulletController)
+        {
+            bulletController.bulletDestroy();
+        }
 
     }
 

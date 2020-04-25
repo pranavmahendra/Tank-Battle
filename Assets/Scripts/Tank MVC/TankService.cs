@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
@@ -6,49 +7,59 @@ using BattleTank.bullet;
 
 namespace BattleTank.Tank
 {
+    
     public class TankService : MonosingletonGeneric<TankService>
     {
 
-        private TankController tankController;
+        public TankController tankController;
         private TankModel tankModel;
         public TankView tankView;
 
+        public List<TankController> tankLists = new List<TankController>();
+
         private TankScriptableObjects tankScriptableObject;
-        public TankScriptableObjectList _tankScriptableObjectList;
+        public TankScriptableObjectList tankScriptableObjectList;
 
-        public BulletService bulletService;
+     
 
-        public int combinationCreation;
+        //public int combinationCreation;
 
-      
+
         private void Start()
         {
-            bulletService = BulletService.Instance;
+      
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
-            
-  
-            Debug.Log(CreateNewTank().TankModel.TankType + " Tank is created.");
-            //Debug.Log(_bulletService.CreateNewBullet(combinationCreation).BulletModel.BulletType + " This bullet is fired from Tank Service.");
 
+            //Added tank to the list.
+
+            CreateNewTank(3);
+
+            //Service initilization methods.
+            SceneService.Instance.followPlayer();
+            CameraFollow.Instance.followPlayerCamera();
+
+            Debug.Log(tankLists.Count);
+            Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
 
         }
 
-
-       public TankController CreateNewTank()
+        public TankController CreateNewTank(int combination)
         {
             //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
             //Extract number from tankObjectlist and apply that value as TSO.
 
-            tankScriptableObject = _tankScriptableObjectList.tanks[combinationCreation];
+
+            tankScriptableObject = tankScriptableObjectList.tanks[combination];
             tankModel = new TankModel(tankScriptableObject);
 
 
             //initialize the value of TC.
             tankController = new TankController(tankModel, tankView);
-
+            tankLists.Add(tankController);
             return tankController;
+   
         }
-
     }
 }
+
 

@@ -3,34 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
 
-public class EnemyView : MonoBehaviour
+namespace BattleTank.EnemyTank
 {
-    public EnemyController enemyController;
-    public Rigidbody rb3d;
-
-    private void Start()
+    public class EnemyView : MonoBehaviour, IDamagable
     {
-        
-    }
+        public EnemyController enemyController;
 
-    private void Update()
-    {
-        //_enemyController.EnemyZMovement();
-    }
+        private Enemeystate currentState;
 
-    public void initialize(EnemyController enemyController)
-    {
-        this.enemyController = enemyController;
-    }
+        public Collider patrolingCollider;
+        public Collider attackingCollider;
 
-    //Destroy enemy on collision with bullet.
+        [SerializeField]
+        public IdleState idleState;
+        [SerializeField]
+        public EnemyPatroling patrolingState;
+        [SerializeField]
+        public AttackState attackState;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.GetComponent<BulletView>() != null)
+
+
+        private void Start()
         {
-            Debug.Log("Enemy tank has been destroyed.");
-            Destroy(gameObject);
+            ChangeState(idleState);
         }
+
+        private void Update()
+        {
+            //_enemyController.EnemyZMovement();
+        }
+
+        public void initialize(EnemyController enemyController)
+        {
+            this.enemyController = enemyController;
+        }
+
+        //Destroy enemy on collision with bullet.
+        public void TakeDamage(BulletType bullettype, int damage)
+        {
+            Debug.Log("Taking damage " + damage);
+            enemyController.ApplyDamage(damage);
+        }
+
+        public void ChangeState(Enemeystate newState)
+        {
+            if (currentState != null)
+            {
+                currentState.OnExitState();
+            }
+
+            currentState = newState;
+
+            currentState.OnStateEnter();
+        }
+
+        public void enemyDestroyView(EnemyView enemyView)
+        {
+            Destroy(enemyView.gameObject);
+            enemyView = null;   
+        }
+
     }
 }

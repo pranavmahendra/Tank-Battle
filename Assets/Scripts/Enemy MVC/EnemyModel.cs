@@ -2,16 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel
+namespace BattleTank.EnemyTank
 {
-    public EnemyModel(EnemyTankScriptableObject enemyTankScriptableObject)
+    public class EnemyModel
     {
-        this.EnemyType = enemyTankScriptableObject.enemyType;
-        this.Speed = enemyTankScriptableObject.speed;
-        this.Health = enemyTankScriptableObject.health;
-    }
+        public EnemyModel(EnemyTankScriptableObject enemyTankScriptableObject)
+        {
+            this.EnemyType = enemyTankScriptableObject.enemyType;
+            this.Speed = enemyTankScriptableObject.speed;
+            this.Health = enemyTankScriptableObject.health;
+        }
 
-    public EnemyType EnemyType { get; }
-    public float Speed { get; }
-    public float Health { get; }
+        public EnemyType EnemyType { get; }
+        public float Speed { get; }
+        public float Health { get; set; }
+
+        //Setting enemymodel to null.
+        public void modelDestroy(EnemyModel enemyModel)
+        {
+            enemyModel = null;
+        }
+
+    }
+ 
 }

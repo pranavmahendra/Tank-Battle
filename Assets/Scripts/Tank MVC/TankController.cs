@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
@@ -6,6 +7,7 @@ using BattleTank.bullet;
 
 namespace BattleTank.Tank
 {
+
     public class TankController
     {
         
@@ -39,9 +41,9 @@ namespace BattleTank.Tank
             Debug.Log("Tank Fired a bullet ");
             Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
             
-            TankService.Instance.bulletService.CreateNewBullet(new Vector3(TankView.barrelTip.position.x, TankView.barrelTip.position.y, TankView.barrelTip.position.z),Quaternion.LookRotation(TankView.barrelTip.forward), 1);
-
-            //TankService.Instance._bulletService.CreateNewBullet(new Vector3(6f,0f,-13f), Quaternion.identity, 1);
+            
+            BulletService.Instance.CreateNewBullet(1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
+            
 
             RaycastHit hit;
             if(Physics.Raycast(TankView.barrelTip.position, TankView.barrelTip.forward, out hit, rayDistance, TankView.rayMask))
@@ -77,7 +79,7 @@ namespace BattleTank.Tank
             //Get the angle between the points
             float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-            //Ta Daaa
+            
             TankView.transform.rotation = Quaternion.Euler(new Vector3(0f, -angle, 0f));
         }
 
@@ -86,8 +88,7 @@ namespace BattleTank.Tank
             return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
         }
 
-        
-
+ 
     }
 
 }

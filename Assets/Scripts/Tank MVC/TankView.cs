@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BattleTank.EnemyTank;
 
 namespace BattleTank.Tank
 {
     public class TankView : MonoBehaviour 
     {
 
-        private TankController tankController;
+        public TankController tankController;
 
         public Transform barrelTip;
         public LayerMask rayMask;
@@ -18,11 +19,8 @@ namespace BattleTank.Tank
 
         private void Start()
         {
-            
 
-            Debug.Log("This tank view is of " + tankController.TankModel.TankType);
-
-            
+            Debug.Log("This tank view is of " + tankController.TankModel.TankType);   
 
         }
 
@@ -44,31 +42,22 @@ namespace BattleTank.Tank
         public void initialize(TankController tankController)
         {
             this.tankController = tankController;
+            
         }
 
 
         //Collision with enemy tank.
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.GetComponent<EnemyView>() != null)
+            if (collision.gameObject.GetComponent<EnemyView>() != null)
             {
-                Debug.Log("Player has collided with enemy tank. GAME OVER");
+                SceneService.Instance.sceneRestart();
 
-                StartCoroutine(restartScene(10));
-                
             }
         }
 
-         private IEnumerator restartScene(float seconds)
-        {
-            particle.Play();
+        
 
-            yield return new WaitForSeconds(seconds);
-
-            SceneManager.LoadScene(0);
-
-            yield return new WaitForSeconds(seconds);
-        }
 
     }
 }
