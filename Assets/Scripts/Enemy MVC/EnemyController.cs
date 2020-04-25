@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace BattleTank.EnemyTank
 {
     public class EnemyController
@@ -18,6 +19,8 @@ namespace BattleTank.EnemyTank
 
         public EnemyModel EnemyModel { get; }
         public EnemyView EnemyView { get; }
+
+        
 
         public EnemyModel getModel()
         {
@@ -43,6 +46,7 @@ namespace BattleTank.EnemyTank
             {
                 //Destroy function being called from service.
                 EnemyService.Instance.DestroyEnemyTank(this);
+
             }
             else
             {

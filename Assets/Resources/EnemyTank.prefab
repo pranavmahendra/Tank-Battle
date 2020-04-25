@@ -360,12 +360,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132700181464532079}
-  - component: {fileID: 7060371763326464303}
   - component: {fileID: -1961872563023107461}
   - component: {fileID: 7333205496590815117}
-  - component: {fileID: -8170158346460813039}
-  - component: {fileID: -2102101999019872351}
-  - component: {fileID: 6364191635107579635}
+  - component: {fileID: -6778751410469083050}
   m_Layer: 9
   m_Name: EnemyTank
   m_TagString: Untagged
@@ -387,28 +384,12 @@ Transform:
   - {fileID: 1132700181464532067}
   - {fileID: 701472151833539980}
   - {fileID: 5202366992071159131}
+  - {fileID: 8718123376516392106}
   - {fileID: 5305945804549770875}
   - {fileID: 4955698639293580112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7060371763326464303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132700181464177039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394f37d6adc5742288e9a082a0a44fdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolingCollider: {fileID: 1976682608739426624}
-  attackingCollider: {fileID: 3863626821624099429}
-  idleState: {fileID: -8170158346460813039}
-  patrolingState: {fileID: -2102101999019872351}
-  attackState: {fileID: 6364191635107579635}
 --- !u!54 &-1961872563023107461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -438,46 +419,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4690533, y: 1.8183751, z: 2.219469}
   m_Center: {x: -0.05282545, y: 0.9800513, z: 0.054833412}
---- !u!114 &-8170158346460813039
+--- !u!114 &-6778751410469083050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132700181464177039}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0346d28f5cb48dd8c2a2e1c365b52d, type: 3}
+  m_Script: {fileID: 11500000, guid: 394f37d6adc5742288e9a082a0a44fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2102101999019872351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132700181464177039}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e362ec363dd4fea8ff5a1571ffac39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  goalPoints:
-  - {fileID: 701472151833539980}
-  - {fileID: 5202366992071159131}
---- !u!114 &6364191635107579635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132700181464177039}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044930d943bcb4a3c8cab6377ba14648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  idleState: {fileID: 7783486534016219741}
+  patrolingState: {fileID: 1523372956}
+  attackState: {fileID: 2594680031924323188}
 --- !u!1 &3381475104762681198
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4955698639293580112}
   - component: {fileID: 3863626821624099429}
+  - component: {fileID: 2594680031924323188}
   m_Layer: 0
   m_Name: ColliderAttacking
   m_TagString: Untagged
@@ -507,7 +464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1132700181464532079}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &3863626821624099429
 SphereCollider:
@@ -520,8 +477,79 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2594680031924323188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381475104762681198}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044930d943bcb4a3c8cab6377ba14648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyView: {fileID: -6778751410469083050}
+--- !u!1 &6220790793817774112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8718123376516392106}
+  - component: {fileID: 5110640924562535026}
+  - component: {fileID: 7783486534016219741}
+  m_Layer: 0
+  m_Name: ColliderIdle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8718123376516392106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220790793817774112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.16, y: -0.2526481, z: 0.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1132700181464532079}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5110640924562535026
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220790793817774112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 12
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7783486534016219741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220790793817774112}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0346d28f5cb48dd8c2a2e1c365b52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyView: {fileID: -6778751410469083050}
 --- !u!1 &7901698144177039969
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5305945804549770875}
   - component: {fileID: 1976682608739426624}
+  - component: {fileID: 1523372956}
   m_Layer: 0
   m_Name: ColliderPatrolling
   m_TagString: Untagged
@@ -735,7 +764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1132700181464532079}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1976682608739426624
 SphereCollider:
@@ -748,5 +777,20 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12
+  m_Radius: 9
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1523372956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653599409932643644}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e362ec363dd4fea8ff5a1571ffac39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyView: {fileID: -6778751410469083050}
+  speed: 1
+  goalPoints: []

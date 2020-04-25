@@ -11,8 +11,6 @@ namespace BattleTank.EnemyTank
 
         private Enemeystate currentState;
 
-        public Collider patrolingCollider;
-        public Collider attackingCollider;
 
         [SerializeField]
         public IdleState idleState;
@@ -25,7 +23,8 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-            ChangeState(idleState);
+            
+            
         }
 
         private void Update()
@@ -60,7 +59,7 @@ namespace BattleTank.EnemyTank
         public void enemyDestroyView(EnemyView enemyView)
         {
             Destroy(enemyView.gameObject);
-            enemyView = null;   
+            enemyView = null;
         }
 
     }
