@@ -10,7 +10,8 @@ namespace BattleTank.Tank
 
     public class TankController
     {
-        
+       
+
         public TankController(TankModel tankModel, TankView tankPrefab)
         {
             this.TankModel = tankModel;
@@ -40,8 +41,9 @@ namespace BattleTank.Tank
         {
             Debug.Log("Tank Fired a bullet ");
             Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
+
             
-            
+
             BulletService.Instance.CreateNewBullet(1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
             
 

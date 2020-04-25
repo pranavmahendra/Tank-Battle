@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using BattleTank.EnemyTank;
+using System;
+
 
 namespace BattleTank.Tank
 {
     public class TankView : MonoBehaviour 
     {
+        public event Action onBulletFire;
 
         public TankController tankController;
 
@@ -29,6 +32,7 @@ namespace BattleTank.Tank
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 tankController.tankFire();
+                onBulletFire?.Invoke();
             }
 
             tankController.movement();

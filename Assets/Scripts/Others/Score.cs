@@ -3,18 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.EnemyTank;
+using BattleTank.Tank;
 using UnityEngine.UI;
+using BattleTank.bullet;
 using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private TextMeshProUGUI UIText;
+
+    private TextMeshProUGUI tankDestroyText;
+  
+    
     private int score = 0;
+    
 
     void Start()
     {
         EnemyService.Instance.onDeathEevnt += Score_OnDeathEvent;
-        UIText = GetComponent<TextMeshProUGUI>();
+        
+        
+        tankDestroyText = GetComponent<TextMeshProUGUI>();
+       
     }
 
     void Update()
@@ -22,11 +31,11 @@ public class Score : MonoBehaviour
         
     }
 
-
     private void Score_OnDeathEvent()
     {
         score += 1;
-        UIText.text = "Number of tanks destroyed: " + score;
+        tankDestroyText.text = "Number of tanks destroyed: " + score;
     }
 
+    
 }

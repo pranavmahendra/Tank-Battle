@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace BattleTank.bullet
 {
@@ -10,6 +11,7 @@ namespace BattleTank.bullet
         private BulletController bulletController;
         public BulletView bulletView;
 
+        //public event Action onBulletFire;
 
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
@@ -33,6 +35,7 @@ namespace BattleTank.bullet
             bulletModel = new BulletModel(bulletScriptableObject);
 
             bulletController = new BulletController(bulletModel,bulletView);
+            //onBulletFire?.Invoke();
 
             return bulletController;
         }
