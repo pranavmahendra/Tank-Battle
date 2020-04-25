@@ -18,13 +18,19 @@ public class AttackState : Enemeystate
         Debug.Log("Tank has stopped attacking!");
     }
 
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if (collision.gameObject.GetComponent<TankView>() != null && enemyView.attackingCollider == true)
-    //    {
-    //        enemyView.ChangeState(enemyView.attackState);
-    //    }
-       
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<TankView>() != null)
+        {
+            enemyView.ChangeState(enemyView.attackState);
+        }
+    }
 
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<TankView>() != null)
+        {
+            enemyView.ChangeState(enemyView.patrolingState);
+        }
+    }
 }

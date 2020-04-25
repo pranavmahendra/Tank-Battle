@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace BattleTank.EnemyTank
 {
@@ -13,13 +14,14 @@ namespace BattleTank.EnemyTank
 
         public List<EnemyController> enemyList = new List<EnemyController>();
 
+        public event Action onDeathEevnt;
 
         public EnemyTankScriptableObject enemyTankScriptableObject;
 
         private void Start()
         {
 
-            
+
 
             Debug.Log(enemyList.Count + " Enemy service script");
         }
@@ -41,14 +43,16 @@ namespace BattleTank.EnemyTank
         public void DestroyEnemyTank(EnemyController enemyController)
         {
             enemyController.DestroyStuff();
-            for(int i = 0; i < enemyList.Count; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                if(enemyList[i] == enemyController)
+                if (enemyList[i] == enemyController)
                 {
                     enemyList.Remove(enemyController);
                 }
             }
             enemyController = null;
+
+            onDeathEevnt?.Invoke();
 
         }
 

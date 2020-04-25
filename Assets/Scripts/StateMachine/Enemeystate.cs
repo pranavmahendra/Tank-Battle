@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace BattleTank.EnemyTank
 {
-    [RequireComponent(typeof(EnemyView))]
+    //[RequireComponent(typeof(EnemyView))]
     public class Enemeystate : MonoBehaviour
     {
-        protected EnemyView enemyView;
+        public EnemyView enemyView;
 
         private void Awake()
         {
-            enemyView = this.GetComponent<EnemyView>();
+
+            
         }
 
         public virtual void OnStateEnter()
@@ -27,6 +28,14 @@ namespace BattleTank.EnemyTank
         public void Tick()
         {
 
+        }
+
+        public void followEnemey()
+        {
+            foreach (EnemyController enemyController in EnemyService.Instance.enemyList)
+            {
+                this.enemyView = enemyController.EnemyView;
+            }
         }
 
     }
