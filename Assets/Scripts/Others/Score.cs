@@ -19,9 +19,9 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        EnemyService.Instance.onDeathEevnt += Score_OnDeathEvent;
-        
-        
+
+        EnemyService.Instance.onDeathEvent += Score_OnDeathEvent;
+    
         tankDestroyText = GetComponent<TextMeshProUGUI>();
        
     }
@@ -37,5 +37,10 @@ public class Score : MonoBehaviour
         tankDestroyText.text = "Number of tanks destroyed: " + score;
     }
 
-    
+    private void OnDestroy()
+    {
+        EnemyService.Instance.onDeathEvent -= Score_OnDeathEvent;
+    }
+
+
 }

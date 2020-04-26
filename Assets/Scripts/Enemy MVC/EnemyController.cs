@@ -57,6 +57,7 @@ namespace BattleTank.EnemyTank
         
         public void DestroyStuff()
         {
+            
             EnemyModel.modelDestroy(getModel());
             EnemyView.enemyDestroyView(this.EnemyView);
  

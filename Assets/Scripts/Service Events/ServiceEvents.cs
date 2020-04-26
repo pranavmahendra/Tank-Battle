@@ -5,13 +5,22 @@ using System;
 
 public class ServiceEvents : MonosingletonGeneric<ServiceEvents>
 {
-    public event Action onDeathEvenet;
+    public event Action onDeathEvent;
 
     public event Action onBulletHit;
 
     private void Start()
     {
-        onDeathEvenet?.Invoke();
+        
+    }
+
+    public void onDeathBroadcast()
+    {
+        onDeathEvent?.Invoke();
+    }
+
+    public void onBulletBroadcast()
+    {
         onBulletHit?.Invoke();
     }
 }
