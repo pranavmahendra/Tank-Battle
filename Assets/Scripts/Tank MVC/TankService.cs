@@ -20,9 +20,9 @@ namespace BattleTank.Tank
         private TankScriptableObjects tankScriptableObject;
         public TankScriptableObjectList tankScriptableObjectList;
 
-     
+        public event Action onBulletHit;
 
-        //public int combinationCreation;
+        public int combinationCreation;
 
 
         private void Start()
@@ -31,7 +31,7 @@ namespace BattleTank.Tank
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
             //Added tank to the list.
-
+            
             CreateNewTank(3);
 
             //Service initilization methods.
@@ -47,7 +47,7 @@ namespace BattleTank.Tank
         {
             //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
             //Extract number from tankObjectlist and apply that value as TSO.
-
+            this.combinationCreation = combination;
 
             tankScriptableObject = tankScriptableObjectList.tanks[combination];
             tankModel = new TankModel(tankScriptableObject);

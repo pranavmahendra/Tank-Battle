@@ -17,6 +17,8 @@ namespace BattleTank.bullet
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
 
+        public List<BulletController> bulletsCreated = new List<BulletController>();
+
 
         private void Start()
         {
@@ -40,6 +42,11 @@ namespace BattleTank.bullet
             {
                 onBulletFire?.Invoke(TankService.Instance.tankLists[i].TankView);
             }
+
+            bulletsCreated.Add(bulletController);
+
+            //Initialize bulletview from health
+            HealthBar.Instance.followBullet();
 
             return bulletController;
         }

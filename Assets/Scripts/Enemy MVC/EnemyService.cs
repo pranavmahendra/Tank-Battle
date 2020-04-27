@@ -15,11 +15,13 @@ namespace BattleTank.EnemyTank
         public List<EnemyController> enemyList = new List<EnemyController>();
 
         public event Action onDeathEvent;
+        public event Action onDamageTaken;
 
         public EnemyTankScriptableObject enemyTankScriptableObject;
 
         private void Start()
         {
+           
 
             Debug.Log(enemyList.Count + " Enemy service script");
         }
@@ -33,7 +35,10 @@ namespace BattleTank.EnemyTank
             enemyList.Add(enemyController);
 
             SceneService.Instance.followEnemey();
+            HealthBar.Instance.followHealthEnemey();
+
             Debug.Log(enemyList.Count + " Updated enemy count!!!");
+
             return enemyController;
 
         }
@@ -41,6 +46,7 @@ namespace BattleTank.EnemyTank
         public void DestroyEnemyTank(EnemyController enemyController)
         {
             onDeathEvent?.Invoke();
+
             enemyController.DestroyStuff();
             for (int i = 0; i < enemyList.Count; i++)
             {
@@ -50,11 +56,12 @@ namespace BattleTank.EnemyTank
                 }
             }
             enemyController = null;
-           
-            
-
         }
 
+        public void onDamageMethod()
+        {
+            onDamageTaken?.Invoke();
+        }
 
     }
 
