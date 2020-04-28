@@ -20,7 +20,7 @@ namespace BattleTank.Tank
         private TankScriptableObjects tankScriptableObject;
         public TankScriptableObjectList tankScriptableObjectList;
 
-     
+        public event Action onBulletHit;
 
         //public int combinationCreation;
 
@@ -31,7 +31,7 @@ namespace BattleTank.Tank
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
             //Added tank to the list.
-
+            
             CreateNewTank(3);
 
             //Service initilization methods.

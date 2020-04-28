@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
+using System;
 
 namespace BattleTank.EnemyTank
 {
@@ -19,7 +20,7 @@ namespace BattleTank.EnemyTank
         [SerializeField]
         public AttackState attackState;
 
-
+      
 
         private void Start()
         {
@@ -42,6 +43,8 @@ namespace BattleTank.EnemyTank
         {
             Debug.Log("Taking damage " + damage);
             enemyController.ApplyDamage(damage);
+
+            EnemyService.Instance.onDamageMethod();
         }
 
         public void ChangeState(Enemeystate newState)

@@ -40,6 +40,7 @@ public class SceneService : MonosingletonGeneric<SceneService>
         foreach(EnemyController enemyController in EnemyService.Instance.enemyList)
         {
             this.enemyView = enemyController.EnemyView;
+  
         }
     }
 
