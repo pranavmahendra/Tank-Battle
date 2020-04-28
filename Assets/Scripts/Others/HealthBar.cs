@@ -15,10 +15,11 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
     public Slider slider;
 
     public EnemyView enemyView;
-    //public BulletView bulletView;
+    public BulletView bulletView;
 
-    public float maxValue;
-    public float value;
+    private float maxValue;
+    private float value;
+    private float damage;
 
     private void Start()
     {
@@ -39,7 +40,8 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
 
     private void healthbar_onDamageTaken()
     {
-        value -= 50;
+        //Replace 50 with the bullet damage amount.
+        value -= damage;
         slider.value = value;
     }
 
@@ -59,13 +61,15 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
         }
     }
 
-    //public void followBullet()
-    //{
-    //    foreach (BulletController bulletController in BulletService.Instance)
-    //    {
-    //        this.bulletView = bulletController.BulletView;
-    //    }
-    //}
+    public void followBullet()
+    {
+        foreach (BulletController bulletController in BulletService.Instance.bulletsCreated)
+        {
+            this.bulletView = bulletController.BulletView;
+
+            damage = bulletView.bulletController.BulletModel.Damage;
+        }
+    }
 
 
 

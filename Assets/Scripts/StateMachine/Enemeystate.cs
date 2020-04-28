@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BattleTank.Tank;
 
 namespace BattleTank.EnemyTank
 {
@@ -8,16 +9,20 @@ namespace BattleTank.EnemyTank
     public class Enemeystate : MonoBehaviour
     {
         public EnemyView enemyView;
+        public TankView tankViewStates;
+        public Transform goal;
 
         private void Awake()
         {
-
-            
+            tankViewStates = EnemyService.Instance.TankViewRef;
+            goal = tankViewStates.transform;
         }
+
 
         public virtual void OnStateEnter()
         {
             this.enabled = true;
+            
         }
 
         public virtual void OnExitState()
@@ -28,14 +33,6 @@ namespace BattleTank.EnemyTank
         public void Tick()
         {
 
-        }
-
-        public void followEnemey()
-        {
-            foreach (EnemyController enemyController in EnemyService.Instance.enemyList)
-            {
-                this.enemyView = enemyController.EnemyView;
-            }
         }
 
     }

@@ -12,6 +12,8 @@ namespace BattleTank.EnemyTank
 
         private Enemeystate currentState;
 
+        public Transform enemyBarrelTip;
+        public LayerMask rayMask;
 
         [SerializeField]
         public IdleState idleState;
@@ -20,7 +22,6 @@ namespace BattleTank.EnemyTank
         [SerializeField]
         public AttackState attackState;
 
-      
 
         private void Start()
         {
@@ -31,6 +32,7 @@ namespace BattleTank.EnemyTank
         private void Update()
         {
             //_enemyController.EnemyZMovement();
+           
         }
 
         public void initialize(EnemyController enemyController)

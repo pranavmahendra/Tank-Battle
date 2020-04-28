@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using BattleTank.Tank;
 
 namespace BattleTank.EnemyTank
 {
@@ -11,6 +12,8 @@ namespace BattleTank.EnemyTank
         private EnemyModel enemyModel;
         public EnemyView enemyView;
         public EnemyController enemyController;
+
+        public TankView TankViewRef;
 
         public List<EnemyController> enemyList = new List<EnemyController>();
 
@@ -62,6 +65,16 @@ namespace BattleTank.EnemyTank
         {
             onDamageTaken?.Invoke();
         }
+
+
+        public void followPlayerEnemeyState()
+        {
+
+            TankViewRef = TankService.Instance.tankLists[0].TankView;
+
+
+        }
+
 
     }
 

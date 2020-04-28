@@ -13,12 +13,14 @@ namespace BattleTank.Tank
             this.Speed = (int)tankScriptableObjects.Speed;
             this.Health = (int)tankScriptableObjects.Health;
             this.BulletType = tankScriptableObjects.bullet;
+            this.colorType = tankScriptableObjects.color;
         }
 
         public TankType TankType { get; }
         public int Speed { get; }
         public int Health { get; }
         public BulletType BulletType { get; }
+        public Color colorType { get; }
     }
 
     

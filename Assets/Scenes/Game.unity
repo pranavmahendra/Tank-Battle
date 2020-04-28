@@ -154,6 +154,7 @@ MonoBehaviour:
     type: 3}
   tankScriptableObjectList: {fileID: 11400000, guid: 524f350969d344b959e361af7e0f2b87,
     type: 2}
+  combinationCreation: 0
 --- !u!4 &159771019
 Transform:
   m_ObjectHideFlags: 0
@@ -288,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050, guid: e06a257fb47744b9f8a19c32500cbacd,
     type: 3}
+  TankViewRef: {fileID: 0}
   enemyTankScriptableObject: {fileID: 11400000, guid: b7ccc4c9b266642c491e3a088366948b,
     type: 2}
 --- !u!4 &307391081
@@ -1391,8 +1393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
   enemyView: {fileID: 0}
-  maxValue: 0
-  value: 0
+  bulletView: {fileID: 0}
 --- !u!1 &2034426726
 GameObject:
   m_ObjectHideFlags: 0

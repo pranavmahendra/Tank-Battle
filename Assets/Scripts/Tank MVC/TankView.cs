@@ -17,14 +17,17 @@ namespace BattleTank.Tank
         public Transform barrelTip;
         public LayerMask rayMask;
 
+        public Material tankColor;
+
         public ParticleSystem particle;
-    
+
+
 
         private void Start()
         {
-
-            Debug.Log("This tank view is of " + tankController.TankModel.TankType);   
-
+            
+            Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+            changeColor();
         }
 
         private void Update()
@@ -60,6 +63,10 @@ namespace BattleTank.Tank
             }
         }
 
+        private void changeColor()
+        {
+            tankColor.SetColor("_Color", tankController.TankModel.colorType);
+        }
         
 
 

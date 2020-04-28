@@ -34,7 +34,7 @@ public class SceneService : MonosingletonGeneric<SceneService>
     {
         tankView = TankService.Instance.tankLists[0].TankView;
     }
-
+    
     public void followEnemey()
     {
         foreach(EnemyController enemyController in EnemyService.Instance.enemyList)

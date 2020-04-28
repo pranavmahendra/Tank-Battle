@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
+using BattleTank.EnemyTank;
 
 
 namespace BattleTank.Tank
@@ -22,7 +23,9 @@ namespace BattleTank.Tank
 
         public event Action onBulletHit;
 
-        //public int combinationCreation;
+        public int combinationCreation;
+
+      
 
 
         private void Start()
@@ -30,13 +33,15 @@ namespace BattleTank.Tank
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
+            combinationCreation = 3;
+
             //Added tank to the list.
-            
-            CreateNewTank(3);
+            CreateNewTank(combinationCreation);
 
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
+            EnemyService.Instance.followPlayerEnemeyState();
 
             Debug.Log(tankLists.Count);
             Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
@@ -47,7 +52,8 @@ namespace BattleTank.Tank
         {
             //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
             //Extract number from tankObjectlist and apply that value as TSO.
-
+            this.combinationCreation = combination;
+            
 
             tankScriptableObject = tankScriptableObjectList.tanks[combination];
             tankModel = new TankModel(tankScriptableObject);
