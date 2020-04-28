@@ -22,6 +22,10 @@ namespace BattleTank.EnemyTank
         [SerializeField]
         public AttackState attackState;
 
+<<<<<<< HEAD
+=======
+      
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
 
         private void Start()
         {

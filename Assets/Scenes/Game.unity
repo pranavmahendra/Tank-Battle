@@ -1393,7 +1393,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
   enemyView: {fileID: 0}
+<<<<<<< HEAD
   bulletView: {fileID: 0}
+=======
+  maxValue: 0
+  value: 0
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
 --- !u!1 &2034426726
 GameObject:
   m_ObjectHideFlags: 0

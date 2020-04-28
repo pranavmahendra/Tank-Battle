@@ -24,8 +24,11 @@ namespace BattleTank.Tank
         public event Action onBulletHit;
 
         public int combinationCreation;
+<<<<<<< HEAD
 
       
+=======
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
 
 
         private void Start()
@@ -33,10 +36,16 @@ namespace BattleTank.Tank
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
+<<<<<<< HEAD
             combinationCreation = 3;
 
             //Added tank to the list.
             CreateNewTank(combinationCreation);
+=======
+            //Added tank to the list.
+            
+            CreateNewTank(3);
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
 
             //Service initilization methods.
             SceneService.Instance.followPlayer();
@@ -53,7 +62,10 @@ namespace BattleTank.Tank
             //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
             //Extract number from tankObjectlist and apply that value as TSO.
             this.combinationCreation = combination;
+<<<<<<< HEAD
             
+=======
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
 
             tankScriptableObject = tankScriptableObjectList.tanks[combination];
             tankModel = new TankModel(tankScriptableObject);

@@ -59,6 +59,7 @@ namespace BattleTank.EnemyTank
                 }
             }
             enemyController = null;
+<<<<<<< HEAD
         }
 
         public void onDamageMethod()
@@ -73,8 +74,14 @@ namespace BattleTank.EnemyTank
             TankViewRef = TankService.Instance.tankLists[0].TankView;
 
 
+=======
+>>>>>>> d7803cc80e09d01199f4b8f3ecdaae8d60e5f754
         }
 
+        public void onDamageMethod()
+        {
+            onDamageTaken?.Invoke();
+        }
 
     }
 
