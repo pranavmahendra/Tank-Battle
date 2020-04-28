@@ -6,6 +6,7 @@ using BattleTank.Tank;
 
 public class EnemyPatroling : Enemeystate
 {
+    public float speed = 2;
 
     public override void OnStateEnter()
     {
@@ -25,7 +26,9 @@ public class EnemyPatroling : Enemeystate
 
     private void Update()
     {
-      
+        enemyView.transform.LookAt(goal.position);
+        enemyView.transform.Translate(0, 0, speed * Time.deltaTime);
+        
     }
 
 

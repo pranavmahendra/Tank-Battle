@@ -16,5 +16,6 @@ MonoBehaviour:
   TankName: Blue Tank A
   Speed: 6
   Health: 100
+  color: {r: 0, g: 0.7034385, b: 0.9716981, a: 0}
   bullet: 2
   bulletDetails: {fileID: 11400000, guid: 8d7fc967936de4f388e6e2e013750321, type: 2}

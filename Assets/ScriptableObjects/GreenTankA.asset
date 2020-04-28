@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TankType: 2
   TankName: Green Tank A
-  Speed: 40
+  Speed: 3
   Health: 150
+  color: {r: 0.36854333, g: 0.8207547, b: 0.081301175, a: 0}
   bullet: 3
   bulletDetails: {fileID: 11400000, guid: 5a02b60a0b92142178ee8c80f7c2c09e, type: 2}

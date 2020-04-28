@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TankType: 1
   TankName: Red Tank
-  Speed: 30
+  Speed: 1
   Health: 50
+  color: {r: 0.8962264, g: 0, b: 0, a: 0}
   bullet: 1
   bulletDetails: {fileID: 11400000, guid: 7d5054f5b506848e086cc92836435076, type: 2}

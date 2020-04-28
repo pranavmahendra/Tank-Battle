@@ -29,6 +29,7 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
     public void followPlayerCamera()
     {
         tankView = TankService.Instance.tankLists[0].TankView;
+
     }
 }
 

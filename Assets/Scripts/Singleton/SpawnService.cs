@@ -40,7 +40,7 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
     {
 
 
-        enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(-11f, 0f, 11f), Quaternion.identity);
+        enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(-13f, 0f, -3.0f), Quaternion.identity);
 
         yield return new WaitForSeconds(seconds);
 

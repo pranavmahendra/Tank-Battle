@@ -62,7 +62,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3897211402775783648}
   m_Father: {fileID: 1132700181464532067}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -431,9 +432,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394f37d6adc5742288e9a082a0a44fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBarrelTip: {fileID: 3897211402775783648}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 256
   idleState: {fileID: 7783486534016219741}
   patrolingState: {fileID: 1523372956}
   attackState: {fileID: 2594680031924323188}
+--- !u!1 &2154497335110849209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3897211402775783648}
+  m_Layer: 9
+  m_Name: EnemyTankTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3897211402775783648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154497335110849209}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.41, z: 0.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1132700181464532071}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3381475104762681198
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +527,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
+  tankViewStates: {fileID: 0}
+  goal: {fileID: 0}
+  speed: 3
 --- !u!1 &6220790793817774112
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +588,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
+  tankViewStates: {fileID: 0}
+  goal: {fileID: 0}
 --- !u!1 &7901698144177039969
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,5 +832,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
-  speed: 1
-  goalPoints: []
+  tankViewStates: {fileID: 0}
+  goal: {fileID: 0}
+  speed: 3
