@@ -13,6 +13,7 @@ namespace BattleTank.Tank
         public event Action onBulletFire;
 
         public TankController tankController;
+     
 
         public Transform barrelTip;
         public LayerMask rayMask;

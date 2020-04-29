@@ -37,18 +37,19 @@ namespace BattleTank.bullet
 
 
         //Damage
-        //private void OnCollisionEnter(Collision collision)
-        //{
-        //    IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-        //    if (damagable != null)
-        //    {
-        //        damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
-        //        //Destroy Bullet
-        //        //BulletService.Instance.DestroyBullet(this.bulletController);
-        //        Destroy(gameObject);
-        //        BulletService.Instance.DestroyBullet(bulletController);
-        //    }
-        //}
+        private void OnCollisionEnter(Collision collision)
+        {
+            IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+            if (damagable != null)
+            {
+             
+                damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
+                //Destroy Bullet
+                //BulletService.Instance.DestroyBullet(this.bulletController);
+                Destroy(gameObject);
+                BulletService.Instance.DestroyBullet(bulletController);
+            }
+        }
 
         //Destroy BulletView.
         public void DestroyBulletView(BulletView bulletviewDes)

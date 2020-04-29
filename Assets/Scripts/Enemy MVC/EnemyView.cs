@@ -43,10 +43,13 @@ namespace BattleTank.EnemyTank
         //Destroy enemy on collision with bullet.
         public void TakeDamage(BulletType bullettype, int damage)
         {
+            
             Debug.Log("Taking damage " + damage);
+            
             enemyController.ApplyDamage(damage);
-
-            EnemyService.Instance.onDamageMethod();
+            
+          
+            EnemyService.Instance.onDamageEvent();
         }
 
         public void ChangeState(Enemeystate newState)

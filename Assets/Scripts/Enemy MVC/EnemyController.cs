@@ -40,6 +40,7 @@ namespace BattleTank.EnemyTank
             EnemyView.transform.rotation = quaternion;
         }
 
+
         //Damage
         public void ApplyDamage(int damage)
         {
@@ -55,7 +56,9 @@ namespace BattleTank.EnemyTank
                 Debug.Log("Enemy took damage " + EnemyModel.Health);
             }
         }
-        
+
+
+        //Destroy EnemyTank stuff.
         public void DestroyStuff()
         {
             
@@ -64,10 +67,12 @@ namespace BattleTank.EnemyTank
  
         }
 
+
+        //Firing bullets by enemy.
         public void enemyTankFire(Transform playerTank)
         {
             Debug.DrawRay(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward * rayDistance, Color.red);
-            bulletController = BulletService.Instance.CreateNewBullet(TankService.Instance.combinationCreation);
+            bulletController = BulletService.Instance.CreatePlayerBullet(4,2);
 
             bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
             bulletController.BulletView.transform.LookAt(playerTank.position);

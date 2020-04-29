@@ -11,8 +11,9 @@ namespace BattleTank.bullet
         private BulletModel bulletModel;
         private BulletController bulletController;
         public BulletView bulletView;
+        
 
-        public event Action<TankView> onBulletFire;
+        public event Action onBulletFire;
 
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
@@ -30,19 +31,21 @@ namespace BattleTank.bullet
 
         }
 
-        public BulletController CreateNewBullet(int index)
+
+        public BulletController CreatePlayerBullet(int index, int myID)
         {
             bulletScriptableObject = bulletList.bullets[index];
+
             bulletModel = new BulletModel(bulletScriptableObject);
 
-            bulletController = new BulletController(bulletModel,bulletView);
+            bulletController = new BulletController(bulletModel, bulletView);
 
             //Involoking bullet event with tank view arg.
-            for (int i = 0; i < TankService.Instance.tankLists.Count; i++)
+            if (myID == TankService.Instance.tankLists[0].TankModel.myID)
             {
-                onBulletFire?.Invoke(TankService.Instance.tankLists[i].TankView);
+                onBulletFire?.Invoke();
             }
-
+      
             bulletsCreated.Add(bulletController);
 
             //Initialize bulletview from health
@@ -51,6 +54,7 @@ namespace BattleTank.bullet
             return bulletController;
         }
 
+  
         public void DestroyBullet(BulletController bulletController)
         {
             bulletController.bulletDestroy();

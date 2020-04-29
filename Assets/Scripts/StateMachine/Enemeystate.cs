@@ -14,7 +14,8 @@ namespace BattleTank.EnemyTank
 
         private void Awake()
         {
-            tankViewStates = EnemyService.Instance.TankViewRef;
+            //tankViewStates = EnemyService.Instance.TankViewRef;
+            tankViewStates = TankService.Instance.tankLists[0].TankView;
             goal = tankViewStates.transform;
         }
 

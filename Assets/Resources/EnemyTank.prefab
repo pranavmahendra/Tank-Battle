@@ -435,7 +435,7 @@ MonoBehaviour:
   enemyBarrelTip: {fileID: 3897211402775783648}
   rayMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   idleState: {fileID: 7783486534016219741}
   patrolingState: {fileID: 1523372956}
   attackState: {fileID: 2594680031924323188}

@@ -11,11 +11,14 @@ namespace BattleTank.EnemyTank
             this.EnemyType = enemyTankScriptableObject.enemyType;
             this.Speed = enemyTankScriptableObject.speed;
             this.Health = enemyTankScriptableObject.health;
+            this.myID = enemyTankScriptableObject.myID;
+
         }
 
         public EnemyType EnemyType { get; }
         public float Speed { get; }
         public float Health { get; set; }
+        public int myID { get; }
 
         //Setting enemymodel to null.
         public void modelDestroy(EnemyModel enemyModel)
@@ -24,5 +27,5 @@ namespace BattleTank.EnemyTank
         }
 
     }
- 
+
 }

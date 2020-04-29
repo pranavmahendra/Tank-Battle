@@ -7,8 +7,6 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
 {
     //Transfrom values for camera according to tankview transform values.
 
-
-
     public TankView tankView;
 
 
@@ -17,7 +15,6 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
         
 
     }
-
 
     void Update()
     {

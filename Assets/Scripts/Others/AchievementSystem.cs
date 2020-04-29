@@ -6,11 +6,14 @@ using BattleTank.bullet;
 using System;
 using BattleTank.Tank;
 
-public class AchievementSystem : MonoBehaviour
+public class AchievementSystem : MonosingletonGeneric<AchievementSystem>
 {
 
     private int tanksDestoryed = 0;
     private int BulletsFired = 0;
+
+    private TankView tankview;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +23,10 @@ public class AchievementSystem : MonoBehaviour
         
     }
 
-    private void AS_onBulletFire(TankView tankView)
+    private void AS_onBulletFire()
     {
         BulletsFired += 1;
-        if(BulletsFired == 100)
+        if (BulletsFired == 100)
         {
             Debug.Log("Acheivement Unlocked: " + BulletsFired + " Bullets fired!!!");
         }
@@ -38,4 +41,9 @@ public class AchievementSystem : MonoBehaviour
         }
     }
 
+    public void followPlayerAchievement()
+    {
+        this.tankview = TankService.Instance.tankLists[0].TankView;
+
+    }
 }

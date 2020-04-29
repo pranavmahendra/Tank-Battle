@@ -289,7 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050, guid: e06a257fb47744b9f8a19c32500cbacd,
     type: 3}
-  TankViewRef: {fileID: 0}
   enemyTankScriptableObject: {fileID: 11400000, guid: b7ccc4c9b266642c491e3a088366948b,
     type: 2}
 --- !u!4 &307391081

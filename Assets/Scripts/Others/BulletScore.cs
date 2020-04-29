@@ -4,13 +4,15 @@ using UnityEngine;
 using BattleTank.Tank;
 using UnityEngine.UI;
 using BattleTank.bullet;
+using BattleTank.EnemyTank;
 using TMPro;
 
-public class BulletScore : MonoBehaviour
+public class BulletScore : MonosingletonGeneric<BulletScore>
 {
     private TextMeshProUGUI bulletsFiredText;
- 
 
+    protected TankView tankView;
+     
     private int bullets = 0;
 
     void Start()
@@ -21,8 +23,10 @@ public class BulletScore : MonoBehaviour
     }
 
 
-    private void BulletScore_OnBulletFire(TankView tankView)
+    private void BulletScore_OnBulletFire()
     {
+        //if playertank = myid of player only then add this
+
         bullets += 1;
         bulletsFiredText.text = "Bullets Fired: " + bullets;
 
@@ -33,5 +37,9 @@ public class BulletScore : MonoBehaviour
         BulletService.Instance.onBulletFire -= BulletScore_OnBulletFire;
     }
 
+    public void followPlayerBullet()
+    {
+        this.tankView = TankService.Instance.tankLists[0].TankView;
 
+    }
 }

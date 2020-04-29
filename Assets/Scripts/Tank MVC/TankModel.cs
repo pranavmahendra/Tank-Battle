@@ -14,6 +14,7 @@ namespace BattleTank.Tank
             this.Health = (int)tankScriptableObjects.Health;
             this.BulletType = tankScriptableObjects.bullet;
             this.colorType = tankScriptableObjects.color;
+            this.myID = tankScriptableObjects.myID;
         }
 
         public TankType TankType { get; }
@@ -21,6 +22,7 @@ namespace BattleTank.Tank
         public int Health { get; }
         public BulletType BulletType { get; }
         public Color colorType { get; }
+        public int myID { get; }
     }
 
     

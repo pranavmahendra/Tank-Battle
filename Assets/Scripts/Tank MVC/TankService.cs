@@ -33,6 +33,7 @@ namespace BattleTank.Tank
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
+            //combinationCreation = UnityEngine.Random.Range(1,3);
             combinationCreation = 3;
 
             //Added tank to the list.
@@ -41,10 +42,13 @@ namespace BattleTank.Tank
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
-            EnemyService.Instance.followPlayerEnemeyState();
+            BulletScore.Instance.followPlayerBullet();
+            AchievementSystem.Instance.followPlayerAchievement();
 
-            Debug.Log(tankLists.Count);
-            Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
+
+            Debug.Log("MyID is " + tankLists[0].TankModel.myID);
+            //Debug.Log(tankLists.Count);
+            //Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
 
         }
 

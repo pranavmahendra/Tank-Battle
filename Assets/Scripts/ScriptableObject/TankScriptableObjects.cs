@@ -11,6 +11,7 @@ public class TankScriptableObjects: ScriptableObject
     public Color color;
     public BulletType bullet;
     public BulletScriptableObject bulletDetails;
+    public int myID;
 }
 
 

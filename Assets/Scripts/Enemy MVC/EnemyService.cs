@@ -13,7 +13,7 @@ namespace BattleTank.EnemyTank
         public EnemyView enemyView;
         public EnemyController enemyController;
 
-        public TankView TankViewRef;
+        //public TankView TankViewRef;
 
         public List<EnemyController> enemyList = new List<EnemyController>();
 
@@ -24,8 +24,8 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-           
 
+            
             Debug.Log(enemyList.Count + " Enemy service script");
         }
 
@@ -41,6 +41,7 @@ namespace BattleTank.EnemyTank
             HealthBar.Instance.followHealthEnemey();
 
             Debug.Log(enemyList.Count + " Updated enemy count!!!");
+            Debug.Log("MyID is " + enemyList[0].EnemyModel.myID);
 
             return enemyController;
 
@@ -61,19 +62,19 @@ namespace BattleTank.EnemyTank
             enemyController = null;
         }
 
-        public void onDamageMethod()
+        public void onDamageEvent()
         {
             onDamageTaken?.Invoke();
         }
 
 
-        public void followPlayerEnemeyState()
-        {
+        //public void followPlayerEnemeyState()
+        //{
 
-            TankViewRef = TankService.Instance.tankLists[0].TankView;
+        //    TankViewRef = TankService.Instance.tankLists[0].TankView;
 
 
-        }
+        //}
 
 
     }
