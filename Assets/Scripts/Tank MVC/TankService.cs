@@ -43,7 +43,7 @@ namespace BattleTank.Tank
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
             BulletScore.Instance.followPlayerBullet();
-            AchievementSystem.Instance.followPlayerAchievement();
+            //AchievementSystem.Instance.followPlayerAchievement();
 
 
             Debug.Log("MyID is " + tankLists[0].TankModel.myID);

@@ -44,7 +44,7 @@ namespace BattleTank.Tank
 
             
 
-            BulletService.Instance.CreatePlayerBullet((TankService.Instance.combinationCreation),1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
+            BulletService.Instance.CreateBullet((TankService.Instance.combinationCreation),1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
             
 
             RaycastHit hit;

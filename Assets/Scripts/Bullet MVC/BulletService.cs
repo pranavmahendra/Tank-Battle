@@ -32,7 +32,7 @@ namespace BattleTank.bullet
         }
 
 
-        public BulletController CreatePlayerBullet(int index, int myID)
+        public BulletController CreateBullet(int index, int myID)
         {
             bulletScriptableObject = bulletList.bullets[index];
 
@@ -40,7 +40,7 @@ namespace BattleTank.bullet
 
             bulletController = new BulletController(bulletModel, bulletView);
 
-            //Involoking bullet event with tank view arg.
+            
             if (myID == TankService.Instance.tankLists[0].TankModel.myID)
             {
                 onBulletFire?.Invoke();

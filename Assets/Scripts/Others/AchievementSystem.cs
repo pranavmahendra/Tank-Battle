@@ -6,7 +6,7 @@ using BattleTank.bullet;
 using System;
 using BattleTank.Tank;
 
-public class AchievementSystem : MonosingletonGeneric<AchievementSystem>
+public class AchievementSystem : MonoBehaviour
 {
 
     private int tanksDestoryed = 0;

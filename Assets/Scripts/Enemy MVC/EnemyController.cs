@@ -72,7 +72,7 @@ namespace BattleTank.EnemyTank
         public void enemyTankFire(Transform playerTank)
         {
             Debug.DrawRay(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward * rayDistance, Color.red);
-            bulletController = BulletService.Instance.CreatePlayerBullet(4,2);
+            bulletController = BulletService.Instance.CreateBullet(4,2);
 
             bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
             bulletController.BulletView.transform.LookAt(playerTank.position);

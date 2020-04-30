@@ -9,8 +9,10 @@ namespace BattleTank.EnemyTank
     public class Enemeystate : MonoBehaviour
     {
         public EnemyView enemyView;
+        //Remove this as we will be using collision object for chasing.
         public TankView tankViewStates;
         public Transform goal;
+
 
         private void Awake()
         {
