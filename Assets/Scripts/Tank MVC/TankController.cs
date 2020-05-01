@@ -89,6 +89,27 @@ namespace BattleTank.Tank
             return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
         }
 
+
+        //Destry playertank on collision with bullet.
+        public void ApplyDamage(int damage)
+        {
+            if (TankModel.Health - damage <= 0)
+            {
+                TankService.Instance.playerDeadEvent();
+                Debug.Log("Player tank has been destoryed.");
+            }
+            else
+            {
+                TankModel.Health -= damage;
+                Debug.Log("Player took damage " + TankModel.Health);
+            }
+        }
+
+        //public void DestroyController()
+        //{
+        //    TankModel.destroyModel(TankModel);
+        //    TankView.DestroyView(this.TankView);
+        //}
  
     }
 

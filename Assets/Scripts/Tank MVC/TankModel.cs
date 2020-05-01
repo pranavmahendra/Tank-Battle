@@ -19,10 +19,16 @@ namespace BattleTank.Tank
 
         public TankType TankType { get; }
         public int Speed { get; }
-        public int Health { get; }
+        public int Health { get; set; }
         public BulletType BulletType { get; }
         public Color colorType { get; }
         public int myID { get; }
+
+
+        //public void destroyModel(TankModel tankModel)
+        //{
+        //    tankModel = null;
+        //}
     }
 
     

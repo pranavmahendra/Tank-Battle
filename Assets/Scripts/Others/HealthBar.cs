@@ -12,37 +12,39 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
     //Maxvalue equal to scriptable object model health.
     //value updated every frame on taking damage from player tank.
 
-    public Slider slider;
+    public Slider enemySlider;
+    public Slider playerSlider;
 
     public EnemyView enemyView;
+    public TankView tankView;
     public BulletView bulletView;
 
-    private float maxValue;
-    private float value;
     private float damage;
+
 
     private void Start()
     {
 
-        slider = GetComponent<Slider>();
+    
 
         EnemyService.Instance.onDamageTaken += healthbar_onDamageTaken;
 
-
+        TankService.Instance.onDamageTaken += healthbar_damageEvent;
 
     }
 
-    private void Update()
+    private void healthbar_damageEvent()
     {
-
+        playerSlider.value -= damage;
 
     }
 
     private void healthbar_onDamageTaken()
     {
         //Replace 50 with the bullet damage amount.
-        value -= damage;
-        slider.value = value;
+        enemySlider.value -= damage;
+       
+
     }
 
    
@@ -52,12 +54,8 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
         foreach (EnemyController enemyController in EnemyService.Instance.enemyList)
         {
             this.enemyView = enemyController.EnemyView;
-
-            this.maxValue = enemyView.enemyController.getModel().Health;
-
-            this.value = this.maxValue;
-
-             
+            enemySlider.maxValue = enemyView.enemyController.EnemyModel.Health;
+            enemySlider.value = enemySlider.maxValue;
         }
     }
 
@@ -69,6 +67,14 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
 
             damage = bulletView.bulletController.BulletModel.Damage;
         }
+    }
+
+    public void followHealthPlayer()
+    {
+        this.tankView = TankService.Instance.tankLists[0].TankView;
+        playerSlider.maxValue = tankView.tankController.TankModel.Health;
+        playerSlider.value = playerSlider.maxValue;
+
     }
 
 

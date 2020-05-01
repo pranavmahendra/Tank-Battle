@@ -23,6 +23,8 @@ namespace BattleTank.Tank
 
         //public event Action onBulletHit;
         public event Action onBulletFire;
+        public event Action onDamageTaken;
+        public event Action onDeathofPlayer;
 
         public int combinationCreation;
 
@@ -43,6 +45,7 @@ namespace BattleTank.Tank
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
+            HealthBar.Instance.followHealthPlayer();
           
 
 
@@ -70,11 +73,21 @@ namespace BattleTank.Tank
    
         }
 
+        public void damageEvenet()
+        {
+            onDamageTaken?.Invoke();
+        }
 
         public void fireEvent()
         {
             onBulletFire?.Invoke();
         }
+
+        public void playerDeadEvent()
+        {
+            onDeathofPlayer?.Invoke();
+        }
+
     }
 }
 

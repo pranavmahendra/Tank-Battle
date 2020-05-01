@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50dc2760120d4afda110b32b44359f8, type: 3}
   m_Name: LowDamageBullet
   m_EditorClassIdentifier: 
-  bulletType: 3
+  bulletType: 2
   damage: 10
-  id: 1

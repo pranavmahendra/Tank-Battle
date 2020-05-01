@@ -8,7 +8,7 @@ using System;
 
 namespace BattleTank.Tank
 {
-    public class TankView : MonoBehaviour 
+    public class TankView : MonoBehaviour, IDamagable
     {
         public event Action onBulletFire;
 
@@ -59,7 +59,8 @@ namespace BattleTank.Tank
         {
             if (collision.gameObject.GetComponent<EnemyView>() != null)
             {
-                SceneService.Instance.sceneRestart();
+                TankService.Instance.playerDeadEvent();
+                //SceneService.Instance.sceneRestart();
 
             }
         }
@@ -68,8 +69,21 @@ namespace BattleTank.Tank
         {
             tankColor.SetColor("_Color", tankController.TankModel.colorType);
         }
-        
+
+        //Taking damage by player.
+        public void TakeDamage(BulletType bullettype, int damage)
+        {
+            tankController.ApplyDamage(damage);
+
+            TankService.Instance.damageEvenet();
+        }
 
 
+        //Destroy view
+        //public void DestroyView(TankView tankView)
+        //{
+        //    tankView = null;
+        //    Destroy(gameObject);
+        //}
     }
 }
