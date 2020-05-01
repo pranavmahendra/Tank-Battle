@@ -7,7 +7,7 @@ using BattleTank.bullet;
 using BattleTank.EnemyTank;
 using TMPro;
 
-public class BulletScore : MonosingletonGeneric<BulletScore>
+public class BulletScore : MonoBehaviour
 {
     private TextMeshProUGUI bulletsFiredText;
 
@@ -17,7 +17,7 @@ public class BulletScore : MonosingletonGeneric<BulletScore>
 
     void Start()
     {
-        BulletService.Instance.onBulletFire += BulletScore_OnBulletFire;
+        TankService.Instance.onBulletFire += BulletScore_OnBulletFire;
 
          bulletsFiredText = GetComponent<TextMeshProUGUI>();
     }
@@ -34,7 +34,7 @@ public class BulletScore : MonosingletonGeneric<BulletScore>
 
     private void OnDestroy()
     {
-        BulletService.Instance.onBulletFire -= BulletScore_OnBulletFire;
+        TankService.Instance.onBulletFire -= BulletScore_OnBulletFire;
     }
 
     public void followPlayerBullet()

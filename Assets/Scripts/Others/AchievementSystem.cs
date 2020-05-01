@@ -19,7 +19,7 @@ public class AchievementSystem : MonoBehaviour
     void Start()
     {
         EnemyService.Instance.onDeathEvent += AS_OnDeathEvent;
-        BulletService.Instance.onBulletFire += AS_onBulletFire;
+        TankService.Instance.onBulletFire += AS_onBulletFire;
         
     }
 

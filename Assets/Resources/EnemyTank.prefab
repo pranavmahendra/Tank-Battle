@@ -527,8 +527,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
-  tankViewStates: {fileID: 0}
-  goal: {fileID: 0}
   speed: 2
 --- !u!1 &6220790793817774112
 GameObject:
@@ -588,8 +586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
-  tankViewStates: {fileID: 0}
-  goal: {fileID: 0}
 --- !u!1 &7901698144177039969
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +828,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyView: {fileID: -6778751410469083050}
-  tankViewStates: {fileID: 0}
-  goal: {fileID: 0}
   speed: 2

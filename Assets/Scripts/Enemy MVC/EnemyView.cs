@@ -38,6 +38,7 @@ namespace BattleTank.EnemyTank
         public void initialize(EnemyController enemyController)
         {
             this.enemyController = enemyController;
+           
         }
 
         //Destroy enemy on collision with bullet.

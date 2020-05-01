@@ -10,15 +10,15 @@ namespace BattleTank.EnemyTank
     {
         public EnemyView enemyView;
         //Remove this as we will be using collision object for chasing.
-        public TankView tankViewStates;
-        public Transform goal;
+        //public TankView tankViewStates;
+        //public Transform goal;
 
 
         private void Awake()
         {
             //tankViewStates = EnemyService.Instance.TankViewRef;
-            tankViewStates = TankService.Instance.tankLists[0].TankView;
-            goal = tankViewStates.transform;
+            //tankViewStates = TankService.Instance.tankLists[0].TankView;
+            //goal = tankViewStates.transform;
         }
 
 

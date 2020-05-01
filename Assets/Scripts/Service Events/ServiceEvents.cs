@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ServiceEvents : MonosingletonGeneric<ServiceEvents>
+public class ServiceEvents : MonoBehaviour
 {
     public event Action onDeathEvent;
 

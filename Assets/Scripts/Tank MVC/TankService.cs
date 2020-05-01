@@ -21,7 +21,8 @@ namespace BattleTank.Tank
         private TankScriptableObjects tankScriptableObject;
         public TankScriptableObjectList tankScriptableObjectList;
 
-        public event Action onBulletHit;
+        //public event Action onBulletHit;
+        public event Action onBulletFire;
 
         public int combinationCreation;
 
@@ -42,8 +43,7 @@ namespace BattleTank.Tank
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
-            BulletScore.Instance.followPlayerBullet();
-            //AchievementSystem.Instance.followPlayerAchievement();
+          
 
 
             Debug.Log("MyID is " + tankLists[0].TankModel.myID);
@@ -68,6 +68,12 @@ namespace BattleTank.Tank
             tankLists.Add(tankController);
             return tankController;
    
+        }
+
+
+        public void fireEvent()
+        {
+            onBulletFire?.Invoke();
         }
     }
 }

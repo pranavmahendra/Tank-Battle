@@ -7,6 +7,7 @@ using BattleTank.Tank;
 public class AttackState : Enemeystate
 {
     public float speed = 2;
+    private Transform playerPos;
 
     public override void OnStateEnter()
     {
@@ -25,7 +26,7 @@ public class AttackState : Enemeystate
 
     private void Update()
     {
-        enemyView.transform.LookAt(goal.position);
+        enemyView.transform.LookAt(playerPos.position);
         enemyView.transform.Translate(0, 0, speed * Time.deltaTime);
         
 
@@ -36,6 +37,10 @@ public class AttackState : Enemeystate
     {
         if (other.gameObject.GetComponent<TankView>() != null)
         {
+            GameObject player = other.gameObject;
+            Transform goal = player.transform;
+            this.playerPos = goal;
+
             enemyView.ChangeState(enemyView.attackState);
         }
     }
@@ -50,7 +55,7 @@ public class AttackState : Enemeystate
 
     public IEnumerator tankFireRate()
     {
-        enemyView.enemyController.enemyTankFire(goal);
+        enemyView.enemyController.enemyTankFire();
         yield return new WaitForEndOfFrame();
     }
 }

@@ -64,18 +64,20 @@ namespace BattleTank.EnemyTank
             
             EnemyModel.modelDestroy(getModel());
             EnemyView.enemyDestroyView(this.EnemyView);
+            
  
         }
 
 
         //Firing bullets by enemy.
-        public void enemyTankFire(Transform playerTank)
+        public void enemyTankFire()
         {
             Debug.DrawRay(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward * rayDistance, Color.red);
-            bulletController = BulletService.Instance.CreateBullet(4,2);
+
+            bulletController = BulletService.Instance.CreateBullet(4,"Enemy");
 
             bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
-            bulletController.BulletView.transform.LookAt(playerTank.position);
+
 
             RaycastHit hit;
             if(Physics.Raycast(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward, out hit, rayDistance, EnemyView.rayMask))

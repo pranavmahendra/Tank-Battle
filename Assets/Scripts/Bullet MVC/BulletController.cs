@@ -6,13 +6,13 @@ namespace BattleTank.bullet
 {
     public class BulletController
     {
-        public BulletController(BulletModel bulletModel, BulletView bulletPrefab)
+        public BulletController(BulletModel bulletModel, BulletView bulletPrefab,string layer)
         {
             BulletModel = bulletModel;
 
             BulletView = GameObject.Instantiate<BulletView>(bulletPrefab);
 
-            BulletView.Initialize(this);
+            BulletView.Initialize(this,layer);
         }
 
         public BulletModel BulletModel { get; }

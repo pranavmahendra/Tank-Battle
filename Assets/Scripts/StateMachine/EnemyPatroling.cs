@@ -7,6 +7,7 @@ using BattleTank.Tank;
 public class EnemyPatroling : Enemeystate
 {
     public float speed = 2;
+    private Transform PlayerPos;
 
     public override void OnStateEnter()
     {
@@ -26,7 +27,8 @@ public class EnemyPatroling : Enemeystate
 
     private void Update()
     {
-        enemyView.transform.LookAt(goal.position);
+        
+        enemyView.transform.LookAt(PlayerPos.position);
         enemyView.transform.Translate(0, 0, speed * Time.deltaTime);
         
     }
@@ -36,7 +38,11 @@ public class EnemyPatroling : Enemeystate
     {
         if (other.gameObject.GetComponent<TankView>() != null)
         {
+            GameObject player = other.gameObject;
+            Transform goal = player.transform;
+            this.PlayerPos = goal;
             enemyView.ChangeState(enemyView.patrolingState);
+        
         }
     }
 
@@ -44,6 +50,7 @@ public class EnemyPatroling : Enemeystate
     {
         if (other.gameObject.GetComponent<TankView>() != null)
         {
+       
             enemyView.ChangeState(enemyView.idleState);
         }
     }

@@ -7,7 +7,7 @@ using BattleTank.Tank;
 
 public class IdleState : Enemeystate
 {
-
+    private Transform playerPos;
    
 
     public override void OnStateEnter()
@@ -24,16 +24,20 @@ public class IdleState : Enemeystate
 
     private void Update()
     {
- 
-        enemyView.transform.LookAt(goal.position);
+        
+        enemyView.transform.LookAt(playerPos.position);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<TankView>() != null )
-        {
 
+        if(other.gameObject.GetComponent<TankView>() != null)
+        {
+            GameObject player = other.gameObject;
+            Transform goal = player.transform;
+            this.playerPos = goal;
             enemyView.ChangeState(enemyView.idleState);
+            
 
         }
     }

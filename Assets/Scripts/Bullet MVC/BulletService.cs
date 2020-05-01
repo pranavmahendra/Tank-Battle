@@ -13,8 +13,6 @@ namespace BattleTank.bullet
         public BulletView bulletView;
         
 
-        public event Action onBulletFire;
-
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
 
@@ -32,19 +30,15 @@ namespace BattleTank.bullet
         }
 
 
-        public BulletController CreateBullet(int index, int myID)
+        public BulletController CreateBullet(int index,string Layer)
         {
             bulletScriptableObject = bulletList.bullets[index];
 
             bulletModel = new BulletModel(bulletScriptableObject);
 
-            bulletController = new BulletController(bulletModel, bulletView);
+            bulletController = new BulletController(bulletModel, bulletView,Layer);
 
             
-            if (myID == TankService.Instance.tankLists[0].TankModel.myID)
-            {
-                onBulletFire?.Invoke();
-            }
       
             bulletsCreated.Add(bulletController);
 
