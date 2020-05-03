@@ -11,11 +11,13 @@ namespace BattleTank.bullet
         {
             BulletType = bulletScriptableObject.bulletType;
             Damage = (int)bulletScriptableObject.damage;
+
+
         }
 
         public BulletType BulletType { get; }
         public int Damage { get; }
-
+   
 
         public void DestroyBulletModel(BulletModel bulletModel)
         {

@@ -10,7 +10,8 @@ namespace BattleTank.Tank
 
     public class TankController
     {
-        
+       
+
         public TankController(TankModel tankModel, TankView tankPrefab)
         {
             this.TankModel = tankModel;
@@ -40,10 +41,10 @@ namespace BattleTank.Tank
         {
             Debug.Log("Tank Fired a bullet ");
             Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
-            
-            
-            BulletService.Instance.CreateNewBullet(1).setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
-            
+
+            BulletService.Instance.CreateBullet(TankService.Instance.combinationCreation,"Player").setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
+
+            TankService.Instance.fireEvent();
 
             RaycastHit hit;
             if(Physics.Raycast(TankView.barrelTip.position, TankView.barrelTip.forward, out hit, rayDistance, TankView.rayMask))
@@ -88,6 +89,27 @@ namespace BattleTank.Tank
             return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
         }
 
+
+        //Destry playertank on collision with bullet.
+        public void ApplyDamage(int damage)
+        {
+            if (TankModel.Health - damage <= 0)
+            {
+                TankService.Instance.playerDeadEvent();
+                Debug.Log("Player tank has been destoryed.");
+            }
+            else
+            {
+                TankModel.Health -= damage;
+                Debug.Log("Player took damage " + TankModel.Health);
+            }
+        }
+
+        //public void DestroyController()
+        //{
+        //    TankModel.destroyModel(TankModel);
+        //    TankView.DestroyView(this.TankView);
+        //}
  
     }
 

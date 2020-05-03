@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
+using BattleTank.EnemyTank;
 
 
 namespace BattleTank.Tank
@@ -20,9 +21,14 @@ namespace BattleTank.Tank
         private TankScriptableObjects tankScriptableObject;
         public TankScriptableObjectList tankScriptableObjectList;
 
-     
+        //public event Action onBulletHit;
+        public event Action onBulletFire;
+        public event Action onDamageTaken;
+        public event Action onDeathofPlayer;
 
-        //public int combinationCreation;
+        public int combinationCreation;
+
+      
 
 
         private void Start()
@@ -30,16 +36,22 @@ namespace BattleTank.Tank
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
-            //Added tank to the list.
+            //combinationCreation = UnityEngine.Random.Range(1,3);
+            combinationCreation = 3;
 
-            CreateNewTank(3);
+            //Added tank to the list.
+            CreateNewTank(combinationCreation);
 
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
+            HealthBar.Instance.followHealthPlayer();
+          
 
-            Debug.Log(tankLists.Count);
-            Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
+
+            Debug.Log("MyID is " + tankLists[0].TankModel.myID);
+            //Debug.Log(tankLists.Count);
+            //Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
 
         }
 
@@ -47,7 +59,8 @@ namespace BattleTank.Tank
         {
             //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
             //Extract number from tankObjectlist and apply that value as TSO.
-
+            this.combinationCreation = combination;
+            
 
             tankScriptableObject = tankScriptableObjectList.tanks[combination];
             tankModel = new TankModel(tankScriptableObject);
@@ -59,6 +72,22 @@ namespace BattleTank.Tank
             return tankController;
    
         }
+
+        public void damageEvenet()
+        {
+            onDamageTaken?.Invoke();
+        }
+
+        public void fireEvent()
+        {
+            onBulletFire?.Invoke();
+        }
+
+        public void playerDeadEvent()
+        {
+            onDeathofPlayer?.Invoke();
+        }
+
     }
 }
 

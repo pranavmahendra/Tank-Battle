@@ -7,8 +7,6 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
 {
     //Transfrom values for camera according to tankview transform values.
 
-
-
     public TankView tankView;
 
 
@@ -17,7 +15,6 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
         
 
     }
-
 
     void Update()
     {
@@ -29,6 +26,7 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
     public void followPlayerCamera()
     {
         tankView = TankService.Instance.tankLists[0].TankView;
+
     }
 }
 

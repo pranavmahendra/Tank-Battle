@@ -8,8 +8,10 @@ public class TankScriptableObjects: ScriptableObject
     public String TankName;
     public float Speed;
     public float Health;
+    public Color color;
     public BulletType bullet;
     public BulletScriptableObject bulletDetails;
+    public int myID;
 }
 
 

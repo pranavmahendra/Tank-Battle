@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using BattleTank.Tank;
 using BattleTank.EnemyTank;
+using System;
 
 public class SceneService : MonosingletonGeneric<SceneService>
 {
@@ -22,24 +23,28 @@ public class SceneService : MonosingletonGeneric<SceneService>
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
-        sceneIndex = scene.buildIndex; 
-        
-        
-
+        sceneIndex = scene.buildIndex;
+        TankService.Instance.onDeathofPlayer += sceneService_restart;
         Debug.Log("Message from scene service " + TankService.Instance.tankLists.Count);
 
+    }
+
+    private void sceneService_restart()
+    {
+        sceneRestart();
     }
 
     public void followPlayer()
     {
         tankView = TankService.Instance.tankLists[0].TankView;
     }
-
+    
     public void followEnemey()
     {
         foreach(EnemyController enemyController in EnemyService.Instance.enemyList)
         {
             this.enemyView = enemyController.EnemyView;
+  
         }
     }
 
@@ -50,7 +55,8 @@ public class SceneService : MonosingletonGeneric<SceneService>
 
     private IEnumerator restart(float seconds)
     {
-        Debug.Log("Player has collided with enemy tank. GAME OVER");
+        
+        Debug.Log("GAME OVER");
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(sceneIndex);
         

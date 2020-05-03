@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BattleTank.bullet;
+using BattleTank.Tank;
 
 namespace BattleTank.EnemyTank
 {
@@ -18,7 +20,9 @@ namespace BattleTank.EnemyTank
 
         public EnemyModel EnemyModel { get; }
         public EnemyView EnemyView { get; }
-
+        public float rayDistance = 100f;
+        public BulletController bulletController;
+  
         public EnemyModel getModel()
         {
             return EnemyModel;
@@ -36,6 +40,7 @@ namespace BattleTank.EnemyTank
             EnemyView.transform.rotation = quaternion;
         }
 
+
         //Damage
         public void ApplyDamage(int damage)
         {
@@ -43,6 +48,7 @@ namespace BattleTank.EnemyTank
             {
                 //Destroy function being called from service.
                 EnemyService.Instance.DestroyEnemyTank(this);
+
             }
             else
             {
@@ -50,13 +56,39 @@ namespace BattleTank.EnemyTank
                 Debug.Log("Enemy took damage " + EnemyModel.Health);
             }
         }
-        
+
+
+        //Destroy EnemyTank stuff.
         public void DestroyStuff()
         {
+            
             EnemyModel.modelDestroy(getModel());
             EnemyView.enemyDestroyView(this.EnemyView);
+            
  
         }
+
+
+        //Firing bullets by enemy.
+        public void enemyTankFire()
+        {
+            Debug.DrawRay(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward * rayDistance, Color.red);
+
+            bulletController = BulletService.Instance.CreateBullet(4,"Enemy");
+
+            bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
+
+
+            RaycastHit hit;
+            if(Physics.Raycast(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward, out hit, rayDistance, EnemyView.rayMask))
+            {
+                if(hit.rigidbody != null)
+                {
+                    Debug.Log("Missile hit player tank");
+                }
+            }
+        }
+
 
     }
 

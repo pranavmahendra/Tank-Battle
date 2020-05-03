@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
+using System;
 
 namespace BattleTank.EnemyTank
 {
@@ -11,8 +12,8 @@ namespace BattleTank.EnemyTank
 
         private Enemeystate currentState;
 
-        public Collider patrolingCollider;
-        public Collider attackingCollider;
+        public Transform enemyBarrelTip;
+        public LayerMask rayMask;
 
         [SerializeField]
         public IdleState idleState;
@@ -22,27 +23,34 @@ namespace BattleTank.EnemyTank
         public AttackState attackState;
 
 
-
         private void Start()
         {
-            ChangeState(idleState);
+            
+            
         }
 
         private void Update()
         {
             //_enemyController.EnemyZMovement();
+           
         }
 
         public void initialize(EnemyController enemyController)
         {
             this.enemyController = enemyController;
+           
         }
 
         //Destroy enemy on collision with bullet.
         public void TakeDamage(BulletType bullettype, int damage)
         {
+            
             Debug.Log("Taking damage " + damage);
+            
             enemyController.ApplyDamage(damage);
+            
+          
+            EnemyService.Instance.onDamageEvent();
         }
 
         public void ChangeState(Enemeystate newState)
@@ -60,7 +68,7 @@ namespace BattleTank.EnemyTank
         public void enemyDestroyView(EnemyView enemyView)
         {
             Destroy(enemyView.gameObject);
-            enemyView = null;   
+            enemyView = null;
         }
 
     }

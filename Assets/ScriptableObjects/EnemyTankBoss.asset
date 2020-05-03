@@ -15,3 +15,5 @@ MonoBehaviour:
   enemyType: 2
   speed: 2
   health: 150
+  enemyBullet: 4
+  myID: 2
