@@ -11,7 +11,8 @@ namespace BattleTank.bullet
         private BulletModel bulletModel;
         private BulletController bulletController;
         public BulletView bulletView;
-        
+
+        private BuletServicePool BuletServicePool;
 
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
@@ -25,6 +26,10 @@ namespace BattleTank.bullet
             bulletScriptableObject = ScriptableObject.CreateInstance<BulletScriptableObject>();
             Debug.Log("This message is from bullet service.");
 
+            BuletServicePool = GetComponent<BuletServicePool>();
+
+           
+
             //Debug.Log("The bullet being created is " + CreateNewBullet(1).BulletModel.BulletType);
 
         }
@@ -36,11 +41,14 @@ namespace BattleTank.bullet
 
             bulletModel = new BulletModel(bulletScriptableObject);
 
-            bulletController = new BulletController(bulletModel, bulletView,Layer);
 
-            
-      
-            bulletsCreated.Add(bulletController);
+
+            //bulletController = new BulletController(bulletModel, bulletView,Layer);
+            bulletController = BuletServicePool.GetBullet(bulletModel, bulletView,Layer);
+
+            bulletController.BulletView.EnableView();
+            //bulletsCreated.Add(bulletController);
+         
 
             //Initialize bulletview from health
             HealthBar.Instance.followBullet();
@@ -48,10 +56,20 @@ namespace BattleTank.bullet
             return bulletController;
         }
 
-  
+
         public void DestroyBullet(BulletController bulletController)
         {
+           
             bulletController.bulletDestroy();
+            BuletServicePool.ReturnItem(bulletController);
+            
+        }
+
+        public void DestroyRandom(BulletController bulletController)
+        {
+            bulletController.randomBulletsDestroy();
+            BuletServicePool.ReturnItem(bulletController);
+            
         }
 
     }

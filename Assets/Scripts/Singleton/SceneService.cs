@@ -25,13 +25,13 @@ public class SceneService : MonosingletonGeneric<SceneService>
         scene = SceneManager.GetActiveScene();
         sceneIndex = scene.buildIndex;
         TankService.Instance.onDeathofPlayer += sceneService_restart;
-        Debug.Log("Message from scene service " + TankService.Instance.tankLists.Count);
+        //Debug.Log("Message from scene service " + TankService.Instance.tankLists.Count);
 
     }
 
     private void sceneService_restart()
     {
-        sceneRestart();
+        sceneRestart(); 
     }
 
     public void followPlayer()

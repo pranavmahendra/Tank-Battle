@@ -13,12 +13,14 @@ namespace BattleTank.bullet
         {
             
             Debug.Log("This is from Bullet View");
+
+            BulletService.Instance.DestroyRandom(this.bulletController);
         }
 
         private void Update()
         {
             bulletMovement();
-            bulletController.randomBulletsDestroy();
+            //bulletController.randomBulletsDestroy();
          
         }
 
@@ -48,18 +50,51 @@ namespace BattleTank.bullet
             {
 
                 damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
-                //Destroy Bullet
-                //BulletService.Instance.DestroyBullet(this.bulletController);
-                Destroy(gameObject);
-                BulletService.Instance.DestroyBullet(bulletController);
+
+                //Destroy Bullet.
+                BulletService.Instance.DestroyBullet(this.bulletController);
+                //Destroy(gameObject);
+
+
             }
         }
 
         //Destroy BulletView.
-        public void DestroyBulletView(BulletView bulletviewDes)
+        //public void DestroyBulletView(BulletView bulletviewDes)
+        //{
+        //    Destroy(bulletviewDes.gameObject, 2f);
+        //    bulletviewDes = null;
+        //}
+
+        ////Disable BulletView
+        public void DisableViewOnCollision()
         {
-            Destroy(bulletviewDes.gameObject, 2f);
-            bulletviewDes = null;
+           
+            gameObject.SetActive(false);
+            
+        }
+
+        //Disable random bullets
+        public void DisableRandom()
+        {
+            StartCoroutine(disableView());
+            StopCoroutine(StartCoroutine(disableView()));
+
+        }
+
+
+        //Coroutine for disabling.
+        IEnumerator disableView()
+        {
+            yield return new WaitForSeconds(1);
+            gameObject.SetActive(false);
+        }
+
+
+        //Enable BulletView
+        public void EnableView()
+        {
+            gameObject.SetActive(true);
         }
     }
 }

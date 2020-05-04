@@ -61,11 +61,16 @@ namespace BattleTank.EnemyTank
         //Destroy EnemyTank stuff.
         public void DestroyStuff()
         {
-            
-            EnemyModel.modelDestroy(getModel());
-            EnemyView.enemyDestroyView(this.EnemyView);
-            
+
+            //EnemyModel.modelDestroy(getModel());
+            //EnemyView.enemyDestroyView(this.EnemyView);
+            EnemyView.enemyViewDisable();
  
+        }
+
+        public void Enable()
+        {
+            EnemyView.enemyViewEnabled();
         }
 
 
