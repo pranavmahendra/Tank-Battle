@@ -8,6 +8,7 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
 
     public EnemyService enemyService;
     private EnemyView enemyView;
+    private EnemyController enemyController;
 
     private Coroutine spawnEnumerator;
 
@@ -15,6 +16,8 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
     private void Start()
     {
         enemyService = EnemyService.Instance;
+       
+
         if (spawnEnumerator != null)
         {
             StopCoroutine(spawnEnumerator);

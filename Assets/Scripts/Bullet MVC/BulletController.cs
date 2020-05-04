@@ -34,16 +34,19 @@ namespace BattleTank.bullet
         //Destroy logic.
         public void bulletDestroy()
         {
-            BulletModel.DestroyBulletModel(GetBulletModel());
-            BulletView.DestroyBulletView(this.BulletView);
+            //BulletModel.DestroyBulletModel(GetBulletModel());
+            //BulletView.DestroyBulletView(this.BulletView);
+            BulletView.DisableViewOnCollision();
+           
         }
 
 
         //Destroy Random Bullets.
         public void randomBulletsDestroy()
         {
-            BulletService.Instance.DestroyBullet(this);
+            BulletView.DisableRandom();
         }
+
     }
 
 }

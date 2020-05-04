@@ -65,10 +65,20 @@ namespace BattleTank.EnemyTank
             currentState.OnStateEnter();
         }
 
-        public void enemyDestroyView(EnemyView enemyView)
+        //public void enemyDestroyView(EnemyView enemyView)
+        //{ 
+        //    Destroy(enemyView.gameObject);
+        //    enemyView = null;
+        //}
+
+        public void enemyViewDisable()
         {
-            Destroy(enemyView.gameObject);
-            enemyView = null;
+            gameObject.SetActive(false);
+        }
+
+        public void enemyViewEnabled()
+        {
+            gameObject.SetActive(true);
         }
 
     }
