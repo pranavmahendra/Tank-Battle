@@ -13,7 +13,9 @@ namespace BattleTank.Tank
         public event Action onBulletFire;
 
         public TankController tankController;
-     
+
+        public AudioSource audioSource;
+        public List<AudioClip> audioClips;
 
         public Transform barrelTip;
         public LayerMask rayMask;
@@ -28,6 +30,7 @@ namespace BattleTank.Tank
         {
             
             Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+            audioSource = this.GetComponent<AudioSource>();
             changeColor();
         }
 

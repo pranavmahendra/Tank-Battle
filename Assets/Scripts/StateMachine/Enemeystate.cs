@@ -31,6 +31,7 @@ namespace BattleTank.EnemyTank
         public virtual void OnExitState()
         {
             this.enabled = false;
+           
         }
 
         public void Tick()

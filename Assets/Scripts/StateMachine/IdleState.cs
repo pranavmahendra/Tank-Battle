@@ -26,6 +26,7 @@ public class IdleState : Enemeystate
     {
         
         enemyView.transform.LookAt(playerPos.position);
+        
     }
 
     private void OnTriggerEnter(Collider other)

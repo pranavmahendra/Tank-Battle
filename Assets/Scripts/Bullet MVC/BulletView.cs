@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +8,54 @@ namespace BattleTank.bullet
     public class BulletView : MonoBehaviour
     {
         public BulletController bulletController;
-  
+        public AudioSource audioSource;
+        public List<AudioClip> audioClips;
+
+        private float timeElapsed;
 
         private void Start()
         {
-            
-            Debug.Log("This is from Bullet View");
+            //Initialization
+            audioSource = this.GetComponent<AudioSource>();
 
-            BulletService.Instance.DestroyRandom(this.bulletController);
+            BulletService.Instance.onBulletCreated += BV_BulletCreated;
+            BulletService.Instance.onBulletDestroy += BV_BulletDestroy;
+
+            Debug.Log("This is from Bullet View");
+ 
         }
+
+     
+        private void BV_BulletCreated()
+        {
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                audioSource.PlayOneShot(audioClips[1]);
+            }
+        
+        }
+
+        private void BV_BulletDestroy()
+        {
+            
+            audioSource.PlayOneShot(audioClips[2]);
+        }
+
 
         private void Update()
         {
             bulletMovement();
+
+            timeElapsed += Time.deltaTime;
+
+            if(timeElapsed > 2)
+            {
+                this.bulletController.randomBulletsDestroy();
+                timeElapsed = 0;
+            }
             //bulletController.randomBulletsDestroy();
-         
+
         }
 
         //Linking view and controller.
@@ -52,19 +86,13 @@ namespace BattleTank.bullet
                 damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
 
                 //Destroy Bullet.
-                BulletService.Instance.DestroyBullet(this.bulletController);
+                this.bulletController.bulletDestroy();
                 //Destroy(gameObject);
 
 
             }
         }
 
-        //Destroy BulletView.
-        //public void DestroyBulletView(BulletView bulletviewDes)
-        //{
-        //    Destroy(bulletviewDes.gameObject, 2f);
-        //    bulletviewDes = null;
-        //}
 
         ////Disable BulletView
         public void DisableViewOnCollision()
@@ -77,19 +105,10 @@ namespace BattleTank.bullet
         //Disable random bullets
         public void DisableRandom()
         {
-            StartCoroutine(disableView());
-            StopCoroutine(StartCoroutine(disableView()));
 
-        }
-
-
-        //Coroutine for disabling.
-        IEnumerator disableView()
-        {
-            yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
+  
         }
-
 
         //Enable BulletView
         public void EnableView()

@@ -30,6 +30,8 @@ public class EnemyPatroling : Enemeystate
         
         enemyView.transform.LookAt(PlayerPos.position);
         enemyView.transform.Translate(0, 0, speed * Time.deltaTime);
+
+        
         
     }
 

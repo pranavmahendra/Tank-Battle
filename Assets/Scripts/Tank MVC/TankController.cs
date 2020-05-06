@@ -64,6 +64,21 @@ namespace BattleTank.Tank
             float xAxis = Input.GetAxisRaw("Horizontal1");
             float vAxis = Input.GetAxisRaw("Vertical1");
 
+
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                TankView.audioSource.clip = TankView.audioClips[1];
+                TankView.audioSource.Play();
+
+            }
+
+            else if(Input.GetKeyUp(KeyCode.W))
+            {
+                TankView.audioSource.clip = TankView.audioClips[0];
+                TankView.audioSource.Play();
+            }
+
+
             TankView.transform.Translate(new Vector3(xAxis, TankView.transform.position.y, vAxis) * TankModel.Speed * Time.deltaTime);
         }
 

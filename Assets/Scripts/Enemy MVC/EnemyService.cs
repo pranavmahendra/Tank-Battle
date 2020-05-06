@@ -28,11 +28,12 @@ namespace BattleTank.EnemyTank
         {
             servicePoolEnemy = GetComponent<ServicePoolEnemy>();
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    EnemyController initialEnemies = CreateEnemyTank();
-            //    //servicePoolEnemy.ReturnItem(initialEnemies);
-            //}
+            for (int i = 0; i < 5; i++)
+            {
+                EnemyController initialEnemies = CreateEnemyTank();
+
+                StartCoroutine(ReturnTank(initialEnemies));
+            }
 
             //Debug.Log(enemyList.Count + " Enemy service script");
         }
@@ -79,6 +80,16 @@ namespace BattleTank.EnemyTank
             }
             enemyController = null;
         }
+
+        //Returning to tanks.
+       IEnumerator ReturnTank(EnemyController enemyController)
+        {
+            yield return new WaitForEndOfFrame();
+            enemyController.DestroyStuff();
+            servicePoolEnemy.ReturnItem(enemyController);
+           
+        }
+
 
         public void onDamageEvent()
         {

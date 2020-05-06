@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,16 +37,17 @@ namespace BattleTank.bullet
         {
             //BulletModel.DestroyBulletModel(GetBulletModel());
             //BulletView.DestroyBulletView(this.BulletView);
-            BulletView.DisableViewOnCollision();
-           
+             BulletService.Instance.DestroyBullet(this);
         }
 
 
         //Destroy Random Bullets.
         public void randomBulletsDestroy()
         {
-            BulletView.DisableRandom();
+            BulletService.Instance.DestroyRandom(this);
+
         }
+
 
     }
 

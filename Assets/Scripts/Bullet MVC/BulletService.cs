@@ -17,8 +17,12 @@ namespace BattleTank.bullet
         public BulletScriptableObjectList bulletList;
         private BulletScriptableObject bulletScriptableObject;
 
+        public event Action onBulletCreated;
+        public event Action onBulletDestroy;
+
         public List<BulletController> bulletsCreated = new List<BulletController>();
 
+    
 
         private void Start()
         {
@@ -41,35 +45,41 @@ namespace BattleTank.bullet
 
             bulletModel = new BulletModel(bulletScriptableObject);
 
-
-
             //bulletController = new BulletController(bulletModel, bulletView,Layer);
             bulletController = BuletServicePool.GetBullet(bulletModel, bulletView,Layer);
 
             bulletController.BulletView.EnableView();
-            //bulletsCreated.Add(bulletController);
-         
+
+
+            bulletsCreated.Add(bulletController);
+
+
+            onBulletCreated?.Invoke();
 
             //Initialize bulletview from health
             HealthBar.Instance.followBullet();
+     
 
             return bulletController;
+
         }
 
 
         public void DestroyBullet(BulletController bulletController)
         {
-           
-            bulletController.bulletDestroy();
+            onBulletDestroy?.Invoke();
+            bulletController.BulletView.DisableViewOnCollision(); 
             BuletServicePool.ReturnItem(bulletController);
-            
+  
         }
 
         public void DestroyRandom(BulletController bulletController)
         {
-            bulletController.randomBulletsDestroy();
-            BuletServicePool.ReturnItem(bulletController);
-            
+           
+                onBulletDestroy?.Invoke();
+                bulletController.BulletView.DisableRandom();
+                BuletServicePool.ReturnItem(bulletController);
+
         }
 
     }

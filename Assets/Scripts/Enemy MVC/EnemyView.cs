@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
 using System;
+using UnityEngine.AI;
 
 namespace BattleTank.EnemyTank
 {
@@ -15,6 +16,13 @@ namespace BattleTank.EnemyTank
         public Transform enemyBarrelTip;
         public LayerMask rayMask;
 
+       
+        public List<GameObject> waypoints;
+        public Transform goalPosition;
+        public int CurrentWP;
+
+        private NavMeshAgent Agent;
+
         [SerializeField]
         public IdleState idleState;
         [SerializeField]
@@ -25,15 +33,32 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-            
-            
+            Agent = this.GetComponent<NavMeshAgent>();
+            waypoints = WaypointService.Instance.Points;
+           
+
+            CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+          
+            //StartCoroutine(randomNumber());
+
         }
 
         private void Update()
         {
             //_enemyController.EnemyZMovement();
-           
+                    //AIMovement();
+           // wayPointsTransformUpdate();
+
+
         }
+
+
+        private void wayPointsTransformUpdate()
+        {
+            goalPosition = waypoints[CurrentWP].transform;
+            Debug.Log(goalPosition.name);
+        }
+
 
         public void initialize(EnemyController enemyController)
         {
@@ -80,6 +105,32 @@ namespace BattleTank.EnemyTank
         {
             gameObject.SetActive(true);
         }
+
+        //  IEnumerator randomNumber()
+        //{
+        //    CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+        //    Debug.Log(CurrentWP);
+        //    yield return new WaitForEndOfFrame();
+        //}
+
+        public void AIMovement()
+        {
+            if (Agent.remainingDistance < 1)
+            {
+                CurrentWP++;
+                if(CurrentWP >= waypoints.Count)
+                {
+                    CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+                    Debug.Log("New current WP is: " + CurrentWP);
+                    
+                }
+                Agent.SetDestination(waypoints[CurrentWP].transform.position);
+                //Debug.Log("CurrentWP is: " + CurrentWP);
+            }
+        }
+
+      
+
 
     }
 }
