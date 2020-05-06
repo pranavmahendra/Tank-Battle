@@ -16,6 +16,8 @@ namespace BattleTank.EnemyTank
         public Transform enemyBarrelTip;
         public LayerMask rayMask;
 
+        public AudioSource audioSource;
+        public List<AudioClip> audioClips;
        
         public List<GameObject> waypoints;
         public Transform goalPosition;
@@ -33,9 +35,12 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
+            EnemyService.Instance.onDamageTaken += Instance_onDamageTaken;
+            EnemyService.Instance.onDeathEvent += Instance_onDeathEvent;
+
             Agent = this.GetComponent<NavMeshAgent>();
             waypoints = WaypointService.Instance.Points;
-           
+            audioSource = GetComponent<AudioSource>();
 
             CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
           
@@ -43,12 +48,22 @@ namespace BattleTank.EnemyTank
 
         }
 
+        private void Instance_onDeathEvent()
+        {
+           audioSource.PlayOneShot(audioClips[0]);
+        }
+
+        private void Instance_onDamageTaken()
+        {
+            audioSource.PlayOneShot(audioClips[0]);
+        }
+
+
         private void Update()
         {
             //_enemyController.EnemyZMovement();
                     //AIMovement();
            // wayPointsTransformUpdate();
-
 
         }
 

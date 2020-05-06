@@ -18,6 +18,8 @@ namespace BattleTank.bullet
             //Initialization
             audioSource = this.GetComponent<AudioSource>();
 
+
+            //Listeners
             BulletService.Instance.onBulletCreated += BV_BulletCreated;
             BulletService.Instance.onBulletDestroy += BV_BulletDestroy;
 
@@ -47,6 +49,7 @@ namespace BattleTank.bullet
         {
             bulletMovement();
 
+
             timeElapsed += Time.deltaTime;
 
             if(timeElapsed > 2)
@@ -54,6 +57,8 @@ namespace BattleTank.bullet
                 this.bulletController.randomBulletsDestroy();
                 timeElapsed = 0;
             }
+
+            
             //bulletController.randomBulletsDestroy();
 
         }
@@ -88,7 +93,6 @@ namespace BattleTank.bullet
                 //Destroy Bullet.
                 this.bulletController.bulletDestroy();
                 //Destroy(gameObject);
-
 
             }
         }

@@ -72,9 +72,8 @@ public class SceneService : MonosingletonGeneric<SceneService>
 
     public void GameOverScreen()
     {
-        gameoverCanvas.SetActive(true);
-        audioSource.enabled = false;
-        //StartCoroutine(restart(3));
+      
+        StartCoroutine(restart(3));
     }
 
     private void sceneRestart()
@@ -87,14 +86,18 @@ public class SceneService : MonosingletonGeneric<SceneService>
         SceneManager.LoadScene(0);
     }
 
-    ////on Touching
-    //private IEnumerator restart(float seconds)
-    //{
-        
-    //    Debug.Log("GAME OVER");
-    //    yield return new WaitForSeconds(seconds);
-    //    SceneManager.LoadScene(sceneIndex);
-        
-    //}
+    //on Touching
+    private IEnumerator restart(float seconds)
+    {
+
+        Debug.Log("GAME OVER");
+
+        yield return new WaitForSeconds(seconds);
+
+        gameoverCanvas.SetActive(true);
+        audioSource.enabled = false;
+        //SceneManager.LoadScene(sceneIndex);
+
+    }
 
 }

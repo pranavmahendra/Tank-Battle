@@ -68,6 +68,7 @@ namespace BattleTank.bullet
         public void DestroyBullet(BulletController bulletController)
         {
             onBulletDestroy?.Invoke();
+            bulletExplode(bulletController);
             bulletController.BulletView.DisableViewOnCollision(); 
             BuletServicePool.ReturnItem(bulletController);
   
@@ -77,9 +78,16 @@ namespace BattleTank.bullet
         {
            
                 onBulletDestroy?.Invoke();
+                bulletExplode(bulletController);
                 bulletController.BulletView.DisableRandom();
                 BuletServicePool.ReturnItem(bulletController);
 
+        }
+
+        //Explosion
+        public void bulletExplode(BulletController bulletController)
+        {
+            VFXService.Instance.CreateBulletExplosion(bulletController.BulletView.transform.position, bulletController.BulletView.transform.rotation);
         }
 
     }

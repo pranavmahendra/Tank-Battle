@@ -22,16 +22,20 @@ namespace BattleTank.Tank
 
         public Material tankColor;
 
-        public ParticleSystem particle;
 
+        public ParticleSystem particle;
 
 
         private void Start()
         {
-            
+            Instantiate(particle,this.transform.position,this.transform.rotation);
+            particle.Play();
+
             Debug.Log("This tank view is of " + tankController.TankModel.TankType);
             audioSource = this.GetComponent<AudioSource>();
             changeColor();
+
+            //TankService.Instance.DustTrail(this);
         }
 
         private void Update()
@@ -40,6 +44,8 @@ namespace BattleTank.Tank
             {
                 tankController.tankFire();
                 onBulletFire?.Invoke();
+
+     
             }
 
             tankController.movement();

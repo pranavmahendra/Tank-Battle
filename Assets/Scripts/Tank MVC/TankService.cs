@@ -88,6 +88,11 @@ namespace BattleTank.Tank
             onDeathofPlayer?.Invoke();
         }
 
+        //public void DustTrail(TankView tankView)
+        //{
+        //    VFXService.Instance.CreateDust(tankView.transform.position,tankView.transform.rotation);
+        //}
+
     }
 }
 

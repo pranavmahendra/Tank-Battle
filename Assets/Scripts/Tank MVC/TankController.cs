@@ -78,8 +78,10 @@ namespace BattleTank.Tank
                 TankView.audioSource.Play();
             }
 
-
+    
             TankView.transform.Translate(new Vector3(xAxis, TankView.transform.position.y, vAxis) * TankModel.Speed * Time.deltaTime);
+
+            
         }
 
 
