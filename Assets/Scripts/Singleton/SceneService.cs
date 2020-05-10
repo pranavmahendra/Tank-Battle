@@ -14,7 +14,7 @@ public class SceneService : MonosingletonGeneric<SceneService>
     //access to enemeyview.
 
     public TankView tankView;
-    private AudioSource audioSource;
+   
     public EnemyView enemyView;
 
     public Button restartButton;
@@ -31,7 +31,7 @@ public class SceneService : MonosingletonGeneric<SceneService>
         //Initialization
         scene = SceneManager.GetActiveScene();
         sceneIndex = scene.buildIndex;
-        audioSource = tankView.GetComponent<AudioSource>();
+ 
 
         //Subscribing events.
         TankService.Instance.onDeathofPlayer += sceneService_restart;
@@ -41,14 +41,18 @@ public class SceneService : MonosingletonGeneric<SceneService>
         restartButton.onClick.AddListener(sceneRestart);
         MainMenu.onClick.AddListener(MainMenuLoader);
 
+        //Subscribe to events.
+        AchievementSystem.Instance.tankGoalReached += restart_tankGoal;
     }
+
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            gameoverCanvas.SetActive(true);
         }
+        
     }
 
     private void sceneService_restart()
@@ -56,11 +60,13 @@ public class SceneService : MonosingletonGeneric<SceneService>
         GameOverScreen(); 
     }
 
+    //Initialization player.
     public void followPlayer()
     {
         tankView = TankService.Instance.tankLists[0].TankView;
     }
-    
+
+    //Initialization enemy.
     public void followEnemey()
     {
         foreach(EnemyController enemyController in EnemyService.Instance.enemyList)
@@ -70,6 +76,7 @@ public class SceneService : MonosingletonGeneric<SceneService>
         }
     }
 
+    //Game Over
     public void GameOverScreen()
     {
       
@@ -95,9 +102,14 @@ public class SceneService : MonosingletonGeneric<SceneService>
         yield return new WaitForSeconds(seconds);
 
         gameoverCanvas.SetActive(true);
-        audioSource.enabled = false;
+        
         //SceneManager.LoadScene(sceneIndex);
 
+    }
+
+    private void restart_tankGoal()
+    {
+        GameOverScreen();
     }
 
 }

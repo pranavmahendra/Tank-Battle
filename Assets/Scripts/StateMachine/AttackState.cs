@@ -4,58 +4,63 @@ using UnityEngine;
 using BattleTank.EnemyTank;
 using BattleTank.Tank;
 
-public class AttackState : Enemeystate
+
+namespace BattleTank.EnemyTank
 {
-    public float speed = 2;
-    private Transform playerPos;
-
-    public override void OnStateEnter()
+    public class AttackState : Enemeystate
     {
-        base.OnStateEnter();
-        Debug.Log("Tank has started attacking!");
-        StartCoroutine(tankFireRate());
-        
-    }
+        public float speed = 2;
+        private Transform playerPos;
 
-    public override void OnExitState()
-    {
-        base.OnExitState();
-        Debug.Log("Tank has stopped attacking!");
-        StopCoroutine(StartCoroutine(tankFireRate()));
-    }
-
-    private void Update()
-    {
-        enemyView.transform.LookAt(playerPos.position);
-        enemyView.transform.Translate(0, 0, speed * Time.deltaTime);
-        
-
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<TankView>() != null)
+        public override void OnStateEnter()
         {
-            GameObject player = other.gameObject;
-            Transform goal = player.transform;
-            this.playerPos = goal;
+            base.OnStateEnter();
+            //Debug.Log("Tank has started attacking!");
+            StartCoroutine(tankFireRate());
 
-            enemyView.ChangeState(enemyView.attackState);
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponent<TankView>() != null)
+        public override void OnExitState()
         {
-            enemyView.ChangeState(enemyView.patrolingState);
+            base.OnExitState();
+            //Debug.Log("Tank has stopped attacking!");
+            StopCoroutine(StartCoroutine(tankFireRate()));
         }
-    }
 
-    public IEnumerator tankFireRate()
-    {
-        enemyView.enemyController.enemyTankFire();
-        yield return new WaitForEndOfFrame();
+        private void Update()
+        {
+            enemyView.transform.LookAt(playerPos.position);
+            enemyView.transform.Translate(0, 0, speed * Time.deltaTime,Space.Self);
+
+
+
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.GetComponent<TankView>() != null)
+            {
+                GameObject player = other.gameObject;
+                Transform goal = player.transform;
+                this.playerPos = goal;
+
+                enemyView.ChangeState(enemyView.attackState);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.GetComponent<TankView>() != null)
+            {
+                enemyView.ChangeState(enemyView.patrolingState);
+            }
+        }
+
+        public IEnumerator tankFireRate()
+        {
+            enemyView.enemyController.enemyTankFire();
+            yield return new WaitForSeconds(1);
+        }
     }
 }
+

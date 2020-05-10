@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BattleTank.Tank;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonosingletonGeneric<LevelManager>
 {
-    private static LevelManager instance;
+   
     public Scene scene;
     public int index;
 
-    public Button button;
+    public int tankCode;
+
+    public List<Button> buttons;
     
     // Start is called before the first frame update
     void Start()
     {
-        button.onClick.AddListener(LoadNextLevel);
-    }
+   
+        buttons[0].onClick.AddListener(tankColorButtons);
 
-    // Update is called once per frame
-    void Update()
-    {
+        buttons[1].onClick.AddListener(RedColor);
+        buttons[2].onClick.AddListener(BlueColor);
+        buttons[3].onClick.AddListener(GreenColor);
 
     }
 
@@ -28,4 +31,36 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(index);
     }
+
+    //Load buttons
+    public void tankColorButtons()
+    {
+        for (int i = 1; i < buttons.Count; i++)
+        {
+
+            buttons[i].gameObject.SetActive(true);
+            this.tankCode = i;
+            buttons[0].gameObject.SetActive(false);
+        }
+    }
+
+    public void RedColor()
+    {
+        this.tankCode = 1;
+        LoadNextLevel();
+    }
+
+    public void BlueColor()
+    {
+        this.tankCode = 2;
+        LoadNextLevel();
+    }
+
+    public void GreenColor()
+    {
+        this.tankCode = 3;
+        LoadNextLevel();
+    }
+
 }
+

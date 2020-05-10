@@ -19,7 +19,7 @@ public class SoundService : MonosingletonGeneric<SoundService>
 
     private void sound_OnBulletDestroy()
     {
-        Debug.Log("Bullet Destoryed play sound");
+        //Debug.Log("Bullet Destoryed play sound");
         audioSources[0].clip = bulletClips[2];
         audioSources[0].Play();
     }

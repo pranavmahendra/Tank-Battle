@@ -13,6 +13,7 @@ namespace BattleTank.bullet
             Damage = (int)bulletScriptableObject.damage;
 
 
+
         }
 
         public BulletType BulletType { get; }

@@ -53,7 +53,7 @@ namespace BattleTank.EnemyTank
             else
             {
                 EnemyModel.Health -= damage;
-                Debug.Log("Enemy took damage " + EnemyModel.Health);
+                //Debug.Log("Enemy took damage " + EnemyModel.Health);
             }
         }
 
@@ -77,21 +77,10 @@ namespace BattleTank.EnemyTank
         //Firing bullets by enemy.
         public void enemyTankFire()
         {
-            Debug.DrawRay(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward * rayDistance, Color.red);
-
+          
             bulletController = BulletService.Instance.CreateBullet(4,"Enemy");
 
             bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
-
-
-            RaycastHit hit;
-            if(Physics.Raycast(EnemyView.enemyBarrelTip.position, EnemyView.enemyBarrelTip.forward, out hit, rayDistance, EnemyView.rayMask))
-            {
-                if(hit.rigidbody != null)
-                {
-                    Debug.Log("Missile hit player tank");
-                }
-            }
         }
 
 

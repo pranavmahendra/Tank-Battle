@@ -13,17 +13,21 @@ namespace BattleTank.bullet
 
             BulletView = GameObject.Instantiate<BulletView>(bulletPrefab);
 
+
             BulletView.Initialize(this,layer);
         }
 
         public BulletModel BulletModel { get; }
         public BulletView BulletView { get; }
-       
+     
+        
 
         public BulletModel GetBulletModel()
         {
             return BulletModel;
+     
         }
+
 
         //Function to set position of bullet.
         public void setPosition(Vector3 bulletPosition, Quaternion bulletRotation)
@@ -47,6 +51,8 @@ namespace BattleTank.bullet
             BulletService.Instance.DestroyRandom(this);
 
         }
+
+        
 
 
     }

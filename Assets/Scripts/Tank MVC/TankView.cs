@@ -31,7 +31,7 @@ namespace BattleTank.Tank
             Instantiate(particle,this.transform.position,this.transform.rotation);
             particle.Play();
 
-            Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+            //Debug.Log("This tank view is of " + tankController.TankModel.TankType);
             audioSource = this.GetComponent<AudioSource>();
             changeColor();
 
@@ -69,6 +69,7 @@ namespace BattleTank.Tank
             if (collision.gameObject.GetComponent<EnemyView>() != null)
             {
                 TankService.Instance.playerDeadEvent();
+                DisableView(this);
                 //SceneService.Instance.sceneRestart();
 
             }
@@ -89,10 +90,10 @@ namespace BattleTank.Tank
 
 
         //Destroy view
-        //public void DestroyView(TankView tankView)
-        //{
-        //    tankView = null;
-        //    Destroy(gameObject);
-        //}
+        public void DisableView(TankView tankView)
+        {
+            this.tankController.playVFX();
+            this.gameObject.SetActive(false);
+        }
     }
 }

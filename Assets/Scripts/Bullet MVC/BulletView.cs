@@ -8,42 +8,15 @@ namespace BattleTank.bullet
     public class BulletView : MonoBehaviour
     {
         public BulletController bulletController;
-        public AudioSource audioSource;
-        public List<AudioClip> audioClips;
 
         private float timeElapsed;
 
         private void Start()
         {
-            //Initialization
-            audioSource = this.GetComponent<AudioSource>();
-
-
-            //Listeners
-            BulletService.Instance.onBulletCreated += BV_BulletCreated;
-            BulletService.Instance.onBulletDestroy += BV_BulletDestroy;
-
-            Debug.Log("This is from Bullet View");
+      
+            //Debug.Log("This is from Bullet View");
  
         }
-
-     
-        private void BV_BulletCreated()
-        {
-
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                audioSource.PlayOneShot(audioClips[1]);
-            }
-        
-        }
-
-        private void BV_BulletDestroy()
-        {
-            
-            audioSource.PlayOneShot(audioClips[2]);
-        }
-
 
         private void Update()
         {
@@ -58,7 +31,6 @@ namespace BattleTank.bullet
                 timeElapsed = 0;
             }
 
-            
             //bulletController.randomBulletsDestroy();
 
         }
@@ -92,8 +64,14 @@ namespace BattleTank.bullet
 
                 //Destroy Bullet.
                 this.bulletController.bulletDestroy();
-                //Destroy(gameObject);
 
+                //Disbale if pooling enabled.
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                DisableRandom();
             }
         }
 
@@ -111,6 +89,9 @@ namespace BattleTank.bullet
         {
 
             gameObject.SetActive(false);
+
+            //Disbale if pooling enabled.
+            Destroy(gameObject, 2f);
   
         }
 

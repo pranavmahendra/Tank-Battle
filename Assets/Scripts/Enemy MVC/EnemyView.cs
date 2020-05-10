@@ -11,20 +11,19 @@ namespace BattleTank.EnemyTank
     {
         public EnemyController enemyController;
 
-        private Enemeystate currentState;
+        public Enemeystate currentState;
 
         public Transform enemyBarrelTip;
         public LayerMask rayMask;
 
-        public AudioSource audioSource;
-        public List<AudioClip> audioClips;
-       
         public List<GameObject> waypoints;
-        public Transform goalPosition;
-        public int CurrentWP;
+        //public int CurrentWP = 0;
 
-        private NavMeshAgent Agent;
 
+       public NavMeshAgent Agent;
+
+        [SerializeField]
+        public FixedPathState fixedPathState;
         [SerializeField]
         public IdleState idleState;
         [SerializeField]
@@ -35,44 +34,18 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-            EnemyService.Instance.onDamageTaken += Instance_onDamageTaken;
-            EnemyService.Instance.onDeathEvent += Instance_onDeathEvent;
 
             Agent = this.GetComponent<NavMeshAgent>();
             waypoints = WaypointService.Instance.Points;
-            audioSource = GetComponent<AudioSource>();
 
-            CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+            currentState = fixedPathState;
+
+            //CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
           
             //StartCoroutine(randomNumber());
 
         }
 
-        private void Instance_onDeathEvent()
-        {
-           audioSource.PlayOneShot(audioClips[0]);
-        }
-
-        private void Instance_onDamageTaken()
-        {
-            audioSource.PlayOneShot(audioClips[0]);
-        }
-
-
-        private void Update()
-        {
-            //_enemyController.EnemyZMovement();
-                    //AIMovement();
-           // wayPointsTransformUpdate();
-
-        }
-
-
-        private void wayPointsTransformUpdate()
-        {
-            goalPosition = waypoints[CurrentWP].transform;
-            Debug.Log(goalPosition.name);
-        }
 
 
         public void initialize(EnemyController enemyController)
@@ -85,7 +58,7 @@ namespace BattleTank.EnemyTank
         public void TakeDamage(BulletType bullettype, int damage)
         {
             
-            Debug.Log("Taking damage " + damage);
+            //Debug.Log("Taking damage " + damage);
             
             enemyController.ApplyDamage(damage);
             
@@ -127,24 +100,6 @@ namespace BattleTank.EnemyTank
         //    Debug.Log(CurrentWP);
         //    yield return new WaitForEndOfFrame();
         //}
-
-        public void AIMovement()
-        {
-            if (Agent.remainingDistance < 1)
-            {
-                CurrentWP++;
-                if(CurrentWP >= waypoints.Count)
-                {
-                    CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
-                    Debug.Log("New current WP is: " + CurrentWP);
-                    
-                }
-                Agent.SetDestination(waypoints[CurrentWP].transform.position);
-                //Debug.Log("CurrentWP is: " + CurrentWP);
-            }
-        }
-
-      
 
 
     }
