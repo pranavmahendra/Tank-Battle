@@ -15,9 +15,15 @@ namespace BattleTank.EnemyTank
             this.enemyModel = enemyModel;
             this.enemyPrefab = enemyPrefab;
 
-            return GetItem();
+            EnemyController enemyController = GetItem();
+            InitItem(enemyController);
+            return enemyController;
         }
 
+        public override void InitItem(EnemyController enemyController)
+        {
+            enemyController.EnemyView.initializeHealth(enemyController);
+        }
 
         protected override EnemyController CreateItem()
         {

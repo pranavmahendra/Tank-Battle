@@ -34,7 +34,7 @@ public class Score : MonoBehaviour
     private void Score_OnDeathEvent()
     {
         score += 1;
-        tankDestroyText.text = "Number of tanks destroyed: " + score;
+        tankDestroyText.text = "Tanks Destroyed: " + score;
     }
 
     private void OnDestroy()

@@ -31,10 +31,15 @@ namespace BattleTank.bullet
             this.layer = Layer;
     
 
-            return GetItem();
+            BulletController bulletController = GetItem();
+            InitItem(bulletController);
+            return bulletController;
         }
 
-
+        public override void InitItem(BulletController BulletController)
+        {
+            BulletController.BulletView.InitializeLayer(layer);
+        }
 
         public override void ReturnItem(BulletController bulletController)
         {

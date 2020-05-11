@@ -45,8 +45,8 @@ namespace BattleTank.bullet
 
             bulletModel = new BulletModel(bulletScriptableObject);
 
-            bulletController = new BulletController(bulletModel, bulletView,Layer);
-            //bulletController = BuletServicePool.GetBullet(bulletModel, bulletView,Layer);
+            //bulletController = new BulletController(bulletModel, bulletView,Layer);
+            bulletController = BuletServicePool.GetBullet(bulletModel, bulletView,Layer);
 
             bulletController.BulletView.EnableView();
 
@@ -58,8 +58,7 @@ namespace BattleTank.bullet
 
             //Initialize bulletview from health
             HealthBar.Instance.followBullet();
-            //AudioService.Instance.followBullet();
-     
+
 
             return bulletController;
 
@@ -68,10 +67,14 @@ namespace BattleTank.bullet
 
         public void DestroyBullet(BulletController bulletController)
         {
+            //event Invoke
             onBulletDestroy?.Invoke();
+            //Play VFX.
             bulletExplode(bulletController);
-            bulletController.BulletView.DisableViewOnCollision(); 
-            //BuletServicePool.ReturnItem(bulletController);
+            //Disable Logic
+            bulletController.BulletView.DisableViewOnCollision();
+            //Return Item
+            BuletServicePool.ReturnItem(bulletController);
   
         }
 
@@ -81,7 +84,7 @@ namespace BattleTank.bullet
                 onBulletDestroy?.Invoke();
                 bulletExplode(bulletController);
                 bulletController.BulletView.DisableRandom();
-                //BuletServicePool.ReturnItem(bulletController);
+                BuletServicePool.ReturnItem(bulletController);
 
         }
 
@@ -91,12 +94,7 @@ namespace BattleTank.bullet
             VFXService.Instance.CreateBulletExplosion(bulletController.BulletView.transform.position, bulletController.BulletView.transform.rotation);
         }
 
-        //Stay on position
-        public void Stop()
-        {
-
-        }
-
+  
     }
 
 }

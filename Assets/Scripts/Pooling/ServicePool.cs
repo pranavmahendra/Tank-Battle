@@ -48,6 +48,12 @@ public class ServicePool<T> : MonosingletonGeneric<ServicePool<T>> where T: clas
         return (T)null;
     }
 
+    public virtual void InitItem(T item)
+    {
+
+    }
+
+
     class PooledItem<T>
     {
         public T Item;

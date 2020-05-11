@@ -22,16 +22,21 @@ namespace BattleTank.EnemyTank
         public EnemyView EnemyView { get; }
         public float rayDistance = 100f;
         public BulletController bulletController;
-  
+
+        public float startingHealth;
+
+
         public EnemyModel getModel()
         {
             return EnemyModel;
         }
 
+
         public void EnemyZMovement()
         {
             EnemyView.transform.Translate(new Vector3(0f, 0f, 1f) * EnemyModel.Speed * Time.deltaTime);
         }
+
 
         //Set position of enemy.
         public void setPositionEnemy(Vector3 position, Quaternion quaternion)
@@ -44,7 +49,7 @@ namespace BattleTank.EnemyTank
         //Damage
         public void ApplyDamage(int damage)
         {
-            if (EnemyModel.Health - damage <= 0)
+            if (startingHealth - damage <= 0)
             {
                 //Destroy function being called from service.
                 EnemyService.Instance.DestroyEnemyTank(this);
@@ -52,7 +57,7 @@ namespace BattleTank.EnemyTank
             }
             else
             {
-                EnemyModel.Health -= damage;
+                startingHealth -= damage;
                 //Debug.Log("Enemy took damage " + EnemyModel.Health);
             }
         }
@@ -83,6 +88,7 @@ namespace BattleTank.EnemyTank
             bulletController.setPosition(EnemyView.enemyBarrelTip.position, Quaternion.LookRotation(EnemyView.enemyBarrelTip.forward));
         }
 
+  
 
     }
 

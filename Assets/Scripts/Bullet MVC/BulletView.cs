@@ -39,8 +39,13 @@ namespace BattleTank.bullet
         public void Initialize(BulletController controller, string Layer)
         {
             this.bulletController = controller;
-            this.gameObject.layer = LayerMask.NameToLayer(Layer);
+            InitializeLayer(Layer);
             
+        }
+
+        public void InitializeLayer(string layer)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer(layer);
         }
 
         //Bullet movement.
@@ -65,9 +70,6 @@ namespace BattleTank.bullet
                 //Destroy Bullet.
                 this.bulletController.bulletDestroy();
 
-                //Disbale if pooling enabled.
-                Destroy(gameObject);
-
             }
             else
             {
@@ -89,9 +91,6 @@ namespace BattleTank.bullet
         {
 
             gameObject.SetActive(false);
-
-            //Disbale if pooling enabled.
-            Destroy(gameObject, 2f);
   
         }
 

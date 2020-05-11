@@ -44,8 +44,8 @@ namespace BattleTank.EnemyTank
         {
             enemyModel = new EnemyModel(enemyTankScriptableObject);
 
-            enemyController = new EnemyController(enemyModel, enemyView);
-            //EnemyController enemyController = servicePoolEnemy.GetEnemyTank(enemyModel, enemyView);
+            //enemyController = new EnemyController(enemyModel, enemyView);
+            EnemyController enemyController = servicePoolEnemy.GetEnemyTank(enemyModel, enemyView);
 
             //Adding to enemyList
             enemyList.Add(enemyController);
@@ -72,7 +72,7 @@ namespace BattleTank.EnemyTank
             enemyController.DestroyStuff();
 
             tankExplosion(enemyController);
-            //servicePoolEnemy.ReturnItem(enemyController);
+            servicePoolEnemy.ReturnItem(enemyController);
             for (int i = 0; i < enemyList.Count; i++)
             {
                 if (enemyList[i] == enemyController)
@@ -84,13 +84,13 @@ namespace BattleTank.EnemyTank
         }
 
         //Returning to tanks.
-       IEnumerator ReturnTank(EnemyController enemyController)
-        {
-            yield return new WaitForEndOfFrame();
-            enemyController.DestroyStuff();
-            servicePoolEnemy.ReturnItem(enemyController);
+       //IEnumerator ReturnTank(EnemyController enemyController)
+       // {
+       //     yield return new WaitForEndOfFrame();
+       //     enemyController.DestroyStuff();
+       //     servicePoolEnemy.ReturnItem(enemyController);
            
-        }
+       // }
 
 
         public void onDamageEvent()

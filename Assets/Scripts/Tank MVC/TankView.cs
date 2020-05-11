@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using BattleTank.EnemyTank;
 using System;
+using UnityEngine.UI;
+
 
 
 namespace BattleTank.Tank
@@ -22,9 +24,9 @@ namespace BattleTank.Tank
 
         public Material tankColor;
 
-
         public ParticleSystem particle;
 
+        public Image sliderPlayerView;
 
         private void Start()
         {

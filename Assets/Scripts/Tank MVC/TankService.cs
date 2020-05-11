@@ -28,19 +28,18 @@ namespace BattleTank.Tank
 
         public int combinationCreation;
 
-      
-
 
         private void Start()
         {
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
-            combinationCreation = LevelManager.Instance.tankCode;
-     
+            //combinationCreation = LevelManager.Instance.tankCode;
+           
 
             //Added tank to the list.
             CreateNewTank(combinationCreation);
+
 
             //Service initilization methods.
             SceneService.Instance.followPlayer();

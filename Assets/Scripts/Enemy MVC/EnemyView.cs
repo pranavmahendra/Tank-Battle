@@ -4,6 +4,7 @@ using UnityEngine;
 using BattleTank.bullet;
 using System;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace BattleTank.EnemyTank
 {
@@ -19,6 +20,7 @@ namespace BattleTank.EnemyTank
         public List<GameObject> waypoints;
         //public int CurrentWP = 0;
 
+        public Image sliderEnemyView;
 
        public NavMeshAgent Agent;
 
@@ -46,12 +48,25 @@ namespace BattleTank.EnemyTank
 
         }
 
+        private void Update()
+        {
+            
+        }
+
 
 
         public void initialize(EnemyController enemyController)
         {
             this.enemyController = enemyController;
+            initializeHealth(enemyController);
            
+        }
+
+       public void initializeHealth(EnemyController enemyController)
+        {
+            enemyController.startingHealth = enemyController.EnemyModel.Health;
+            
+
         }
 
         //Destroy enemy on collision with bullet.
@@ -101,6 +116,7 @@ namespace BattleTank.EnemyTank
         //    yield return new WaitForEndOfFrame();
         //}
 
+  
 
     }
 }
