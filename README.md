@@ -9,9 +9,9 @@ I developed this game using Unity3D under Outscal for 3D Project with the assets
 # Design Patters:
 
 * MVC Design Pattern
-* State Machine for enemy.
+* State Machine for enemy
 * Observer Pattern
-
+* Achievement System
 * NAVMesh for AI Movement
 
 # Principles Used:
