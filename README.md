@@ -11,8 +11,6 @@ I developed this game using Unity3D under Outscal for 3D Project with the assets
 * State Machine for enemy.
 * Observer Pattern
 
-# Techniques Used
-
 * NAVMesh for AI Movement
 
 # Principles Used:
