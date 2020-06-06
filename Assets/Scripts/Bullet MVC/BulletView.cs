@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,27 +8,44 @@ namespace BattleTank.bullet
     public class BulletView : MonoBehaviour
     {
         public BulletController bulletController;
-  
+
+        private float timeElapsed;
 
         private void Start()
         {
-            
-            Debug.Log("This is from Bullet View");
+      
+            //Debug.Log("This is from Bullet View");
+ 
         }
 
         private void Update()
         {
             bulletMovement();
-            bulletController.randomBulletsDestroy();
-         
+
+
+            timeElapsed += Time.deltaTime;
+
+            if(timeElapsed > 2)
+            {
+                this.bulletController.randomBulletsDestroy();
+                timeElapsed = 0;
+            }
+
+            //bulletController.randomBulletsDestroy();
+
         }
 
         //Linking view and controller.
         public void Initialize(BulletController controller, string Layer)
         {
             this.bulletController = controller;
-            this.gameObject.layer = LayerMask.NameToLayer(Layer);
+            InitializeLayer(Layer);
             
+        }
+
+        public void InitializeLayer(string layer)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer(layer);
         }
 
         //Bullet movement.
@@ -48,18 +66,38 @@ namespace BattleTank.bullet
             {
 
                 damagable.TakeDamage(bulletController.GetBulletModel().BulletType, bulletController.GetBulletModel().Damage);
-                //Destroy Bullet
-                //BulletService.Instance.DestroyBullet(this.bulletController);
-                Destroy(gameObject);
-                BulletService.Instance.DestroyBullet(bulletController);
+
+                //Destroy Bullet.
+                this.bulletController.bulletDestroy();
+
+            }
+            else
+            {
+                DisableRandom();
             }
         }
 
-        //Destroy BulletView.
-        public void DestroyBulletView(BulletView bulletviewDes)
+
+        ////Disable BulletView
+        public void DisableViewOnCollision()
         {
-            Destroy(bulletviewDes.gameObject, 2f);
-            bulletviewDes = null;
+           
+            gameObject.SetActive(false);
+            
+        }
+
+        //Disable random bullets
+        public void DisableRandom()
+        {
+
+            gameObject.SetActive(false);
+  
+        }
+
+        //Enable BulletView
+        public void EnableView()
+        {
+            gameObject.SetActive(true);
         }
     }
 }

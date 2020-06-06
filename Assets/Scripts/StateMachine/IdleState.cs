@@ -4,45 +4,60 @@ using UnityEngine;
 using BattleTank.EnemyTank;
 using BattleTank.Tank;
 
-
-public class IdleState : Enemeystate
+namespace BattleTank.EnemyTank
 {
-    private Transform playerPos;
-   
-
-    public override void OnStateEnter()
+    public class IdleState : Enemeystate
     {
-        base.OnStateEnter();
-        Debug.Log("Tank has entered idle state");
-    }
+        private Transform playerPos;
 
-    public override void OnExitState()
-    {
-        base.OnExitState();
-        Debug.Log("Tank has exited idle state");
-    }
 
-    private void Update()
-    {
-        
-        enemyView.transform.LookAt(playerPos.position);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if(other.gameObject.GetComponent<TankView>() != null)
+        public override void OnStateEnter()
         {
-            GameObject player = other.gameObject;
-            Transform goal = player.transform;
-            this.playerPos = goal;
-            enemyView.ChangeState(enemyView.idleState);
-            
+            base.OnStateEnter();
+            enemyView.Agent.speed = 0;
+            //Debug.Log("Tank has entered idle state");
+        }
+
+        public override void OnExitState()
+        {
+            base.OnExitState();
+
+            //Debug.Log("Tank has exited idle state");
+        }
+
+        private void Update()
+        {
+
+            enemyView.transform.LookAt(playerPos.position);
 
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+
+            if (other.gameObject.GetComponent<TankView>() != null)
+            {
+                GameObject player = other.gameObject;
+                Transform goal = player.transform;
+                this.playerPos = goal;
+                enemyView.ChangeState(enemyView.idleState);
+
+
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.GetComponent<TankView>() != null)
+            {
+                enemyView.ChangeState(enemyView.fixedPathState);
+                
+            }
+        }
+
+
+
+
     }
-
-   
- 
-
 }
+

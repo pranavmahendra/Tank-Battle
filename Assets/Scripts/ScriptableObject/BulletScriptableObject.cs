@@ -6,5 +6,6 @@ public class BulletScriptableObject : ScriptableObject
 {
     public BulletType bulletType;
     public float damage;
+    public string layer;
 
 }

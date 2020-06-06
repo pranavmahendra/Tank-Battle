@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using BattleTank.EnemyTank;
 using System;
+using UnityEngine.UI;
+
 
 
 namespace BattleTank.Tank
@@ -13,7 +15,9 @@ namespace BattleTank.Tank
         public event Action onBulletFire;
 
         public TankController tankController;
-     
+
+        public AudioSource audioSource;
+        public List<AudioClip> audioClips;
 
         public Transform barrelTip;
         public LayerMask rayMask;
@@ -22,13 +26,18 @@ namespace BattleTank.Tank
 
         public ParticleSystem particle;
 
-
+        public Image sliderPlayerView;
 
         private void Start()
         {
-            
-            Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+            Instantiate(particle,this.transform.position,this.transform.rotation);
+            particle.Play();
+
+            //Debug.Log("This tank view is of " + tankController.TankModel.TankType);
+            audioSource = this.GetComponent<AudioSource>();
             changeColor();
+
+            //TankService.Instance.DustTrail(this);
         }
 
         private void Update()
@@ -37,6 +46,8 @@ namespace BattleTank.Tank
             {
                 tankController.tankFire();
                 onBulletFire?.Invoke();
+
+     
             }
 
             tankController.movement();
@@ -60,6 +71,7 @@ namespace BattleTank.Tank
             if (collision.gameObject.GetComponent<EnemyView>() != null)
             {
                 TankService.Instance.playerDeadEvent();
+                DisableView(this);
                 //SceneService.Instance.sceneRestart();
 
             }
@@ -80,10 +92,10 @@ namespace BattleTank.Tank
 
 
         //Destroy view
-        //public void DestroyView(TankView tankView)
-        //{
-        //    tankView = null;
-        //    Destroy(gameObject);
-        //}
+        public void DisableView(TankView tankView)
+        {
+            this.tankController.playVFX();
+            this.gameObject.SetActive(false);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,17 +13,21 @@ namespace BattleTank.bullet
 
             BulletView = GameObject.Instantiate<BulletView>(bulletPrefab);
 
+
             BulletView.Initialize(this,layer);
         }
 
         public BulletModel BulletModel { get; }
         public BulletView BulletView { get; }
-       
+     
+        
 
         public BulletModel GetBulletModel()
         {
             return BulletModel;
+     
         }
+
 
         //Function to set position of bullet.
         public void setPosition(Vector3 bulletPosition, Quaternion bulletRotation)
@@ -31,19 +36,23 @@ namespace BattleTank.bullet
             BulletView.transform.rotation = bulletRotation;
         }
 
+
         //Destroy logic.
         public void bulletDestroy()
         {
-            BulletModel.DestroyBulletModel(GetBulletModel());
-            BulletView.DestroyBulletView(this.BulletView);
+    
+             BulletService.Instance.DestroyBullet(this);
         }
 
 
         //Destroy Random Bullets.
         public void randomBulletsDestroy()
         {
-            BulletService.Instance.DestroyBullet(this);
+            BulletService.Instance.DestroyRandom(this);
+
         }
+
+        
     }
 
 }

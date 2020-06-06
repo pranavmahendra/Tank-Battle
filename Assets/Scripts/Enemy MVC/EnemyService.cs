@@ -13,6 +13,8 @@ namespace BattleTank.EnemyTank
         public EnemyView enemyView;
         public EnemyController enemyController;
 
+        private ServicePoolEnemy servicePoolEnemy;
+
         //public TankView TankViewRef;
 
         public List<EnemyController> enemyList = new List<EnemyController>();
@@ -24,34 +26,53 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
+            servicePoolEnemy = GetComponent<ServicePoolEnemy>();
 
-            
-            Debug.Log(enemyList.Count + " Enemy service script");
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    EnemyController initialEnemies = CreateEnemyTank();
+
+            //    //StartCoroutine(ReturnTank(initialEnemies));
+            //}
+
+            //Debug.Log(enemyList.Count + " Enemy service script");
         }
+
+
 
         public EnemyController CreateEnemyTank()
         {
             enemyModel = new EnemyModel(enemyTankScriptableObject);
 
-            enemyController = new EnemyController(enemyModel, enemyView);
+            //enemyController = new EnemyController(enemyModel, enemyView);
+            EnemyController enemyController = servicePoolEnemy.GetEnemyTank(enemyModel, enemyView);
 
+            //Adding to enemyList
             enemyList.Add(enemyController);
 
+            //Initialization 
             SceneService.Instance.followEnemey();
             HealthBar.Instance.followHealthEnemey();
 
-            Debug.Log(enemyList.Count + " Updated enemy count!!!");
-            Debug.Log("MyID is " + enemyList[0].EnemyModel.myID);
+            
+            enemyController.Enable();
+            //Debug
+            //Debug.Log(enemyList.Count + " Updated enemy count!!!");
+            //Debug.Log("MyID is " + enemyList[0].EnemyModel.myID);
 
             return enemyController;
+          
 
         }
 
         public void DestroyEnemyTank(EnemyController enemyController)
         {
             onDeathEvent?.Invoke();
-
+            
             enemyController.DestroyStuff();
+
+            tankExplosion(enemyController);
+            servicePoolEnemy.ReturnItem(enemyController);
             for (int i = 0; i < enemyList.Count; i++)
             {
                 if (enemyList[i] == enemyController)
@@ -62,19 +83,26 @@ namespace BattleTank.EnemyTank
             enemyController = null;
         }
 
+        //Returning to tanks.
+       //IEnumerator ReturnTank(EnemyController enemyController)
+       // {
+       //     yield return new WaitForEndOfFrame();
+       //     enemyController.DestroyStuff();
+       //     servicePoolEnemy.ReturnItem(enemyController);
+           
+       // }
+
+
         public void onDamageEvent()
         {
             onDamageTaken?.Invoke();
         }
 
-
-        //public void followPlayerEnemeyState()
-        //{
-
-        //    TankViewRef = TankService.Instance.tankLists[0].TankView;
-
-
-        //}
+        //Explosion
+        public void tankExplosion(EnemyController enemyController)
+        {
+            VFXService.Instance.CreateTankExplosion(enemyController.EnemyView.transform.position, enemyController.EnemyView.transform.rotation);
+        }
 
 
     }

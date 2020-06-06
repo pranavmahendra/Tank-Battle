@@ -8,6 +8,7 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
 
     public EnemyService enemyService;
     private EnemyView enemyView;
+    private EnemyController enemyController;
 
     private Coroutine spawnEnumerator;
 
@@ -15,13 +16,11 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
     private void Start()
     {
         enemyService = EnemyService.Instance;
-        if (spawnEnumerator != null)
-        {
-            StopCoroutine(spawnEnumerator);
-        }
-
-
+       
         spawnEnumerator = StartCoroutine(spawnEnemy(5));
+
+
+        StopCoroutine(spawnEnumerator);
 
     }
 
@@ -30,7 +29,7 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
         //Random spawning
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Debug.Log("Spawn when 0 is pressed");
+            //Debug.Log("Spawn when 0 is pressed");
 
             enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(Random.Range(-11f, 20f), 0f, Random.Range(-8f, 11f)), Quaternion.identity);
         }
@@ -44,10 +43,19 @@ public class SpawnService : MonosingletonGeneric<SpawnService>
 
         yield return new WaitForSeconds(seconds);
 
-        //enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(6f, 0f, -13f), Quaternion.identity);
+        //enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(-38f, 0f, -2f), Quaternion.identity);
 
+        //yield return new WaitForSeconds(seconds);
 
-        Debug.Log("This coroutine has finished its job.");
+        //enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(-36f, 0f, -38f), Quaternion.identity);
+
+        //yield return new WaitForSeconds(seconds);
+
+        //enemyService.CreateEnemyTank().setPositionEnemy(new Vector3(26f, 0f, -26f), Quaternion.identity);
+
+        //yield return new WaitForSeconds(seconds);
+
+        //Debug.Log("This coroutine has finished its job.");
     }
 
 

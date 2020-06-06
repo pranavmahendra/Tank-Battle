@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.Tank;
 
+
 namespace BattleTank.EnemyTank
 {
     //[RequireComponent(typeof(EnemyView))]
@@ -31,6 +32,7 @@ namespace BattleTank.EnemyTank
         public virtual void OnExitState()
         {
             this.enabled = false;
+           
         }
 
         public void Tick()

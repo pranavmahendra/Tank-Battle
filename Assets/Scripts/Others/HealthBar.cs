@@ -12,8 +12,15 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
     //Maxvalue equal to scriptable object model health.
     //value updated every frame on taking damage from player tank.
 
-    public Slider enemySlider;
-    public Slider playerSlider;
+    public Image playerSlider;
+    public Image enemySlider;
+
+    private float StartEnemyHealth;
+    private float EnemyHealth;
+ 
+    private float StartPlayerHealth;
+    private float PlayerHealth;
+  
 
     public EnemyView enemyView;
     public TankView tankView;
@@ -25,8 +32,6 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
     private void Start()
     {
 
-    
-
         EnemyService.Instance.onDamageTaken += healthbar_onDamageTaken;
 
         TankService.Instance.onDamageTaken += healthbar_damageEvent;
@@ -35,14 +40,19 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
 
     private void healthbar_damageEvent()
     {
-        playerSlider.value -= damage;
+        //playerSlider.value -= damage;
+        PlayerHealth -= damage;
+
+        playerSlider.fillAmount = PlayerHealth / StartPlayerHealth;
 
     }
+
 
     private void healthbar_onDamageTaken()
     {
         //Replace 50 with the bullet damage amount.
-        enemySlider.value -= damage;
+        EnemyHealth -=  damage;
+        enemySlider.fillAmount = EnemyHealth / StartEnemyHealth;
        
 
     }
@@ -54,8 +64,11 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
         foreach (EnemyController enemyController in EnemyService.Instance.enemyList)
         {
             this.enemyView = enemyController.EnemyView;
-            enemySlider.maxValue = enemyView.enemyController.EnemyModel.Health;
-            enemySlider.value = enemySlider.maxValue;
+            enemySlider = enemyView.sliderEnemyView;
+            StartEnemyHealth = enemyView.enemyController.EnemyModel.Health;
+            EnemyHealth = StartEnemyHealth;
+
+            enemySlider.fillAmount = EnemyHealth / StartEnemyHealth;
         }
     }
 
@@ -72,11 +85,14 @@ public class HealthBar : MonosingletonGeneric<HealthBar>
     public void followHealthPlayer()
     {
         this.tankView = TankService.Instance.tankLists[0].TankView;
-        playerSlider.maxValue = tankView.tankController.TankModel.Health;
-        playerSlider.value = playerSlider.maxValue;
+
+        playerSlider = tankView.sliderPlayerView;
+        StartPlayerHealth = tankView.tankController.TankModel.Health;
+        PlayerHealth = StartPlayerHealth;
+
+        playerSlider.fillAmount = PlayerHealth / StartPlayerHealth;
+
 
     }
-
-
 
 }

@@ -8,18 +8,19 @@ public class CameraFollow : MonosingletonGeneric<CameraFollow>
     //Transfrom values for camera according to tankview transform values.
 
     public TankView tankView;
+    private float speed;
 
 
     void Start()
     {
-        
 
+        speed = 3.0f;
     }
 
     void Update()
     {
     
-        transform.position = new Vector3(tankView.transform.position.x, tankView.transform.position.y, transform.position.z);
+        transform.position = new Vector3(tankView.transform.position.x, tankView.transform.position.y, transform.position.z * speed * Time.deltaTime);
         
     }
 

@@ -5,14 +5,16 @@ using BattleTank.EnemyTank;
 using System;
 using BattleTank.Tank;
 
-public class AchievementSystem : MonoBehaviour
+public class AchievementSystem : MonosingletonGeneric<AchievementSystem>
 {
-
-    private int tanksDestoryed = 0;
-    private int BulletsFired = 0;
+    [HideInInspector]
+    public int tanksDestoryed = 0;
+    [HideInInspector]
+    public int BulletsFired = 0;
 
     private TankView tankview;
-    
+
+    public event Action tankGoalReached;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,10 @@ public class AchievementSystem : MonoBehaviour
     private void AS_OnDeathEvent()
     {
         tanksDestoryed += 1;
-        if(tanksDestoryed == 4)
+        if(tanksDestoryed == 5)
         {
             Debug.Log("Acheivement Unlocked: Number of tanks destoryed are " + tanksDestoryed);
+            tankGoalReached?.Invoke();
         }
     }
 

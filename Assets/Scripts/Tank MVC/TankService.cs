@@ -28,36 +28,37 @@ namespace BattleTank.Tank
 
         public int combinationCreation;
 
-      
-
 
         private void Start()
         {
       
             tankScriptableObject = ScriptableObject.CreateInstance<TankScriptableObjects>();
 
-            //combinationCreation = UnityEngine.Random.Range(1,3);
-            combinationCreation = 3;
+            //combinationCreation = LevelManager.Instance.tankCode;
+           
 
             //Added tank to the list.
             CreateNewTank(combinationCreation);
+
 
             //Service initilization methods.
             SceneService.Instance.followPlayer();
             CameraFollow.Instance.followPlayerCamera();
             HealthBar.Instance.followHealthPlayer();
-          
 
+             
 
-            Debug.Log("MyID is " + tankLists[0].TankModel.myID);
+            // Debug.Log("MyID is " + tankLists[0].TankModel.myID);
             //Debug.Log(tankLists.Count);
             //Debug.Log("The tank type is " + tankLists[0].getModel().TankType);
 
         }
 
+       
+
         public TankController CreateNewTank(int combination)
         {
-            //tankScriptableObject = tankScriptableObjectList.tanks[Random.Range(0,3)];
+
             //Extract number from tankObjectlist and apply that value as TSO.
             this.combinationCreation = combination;
             
@@ -87,6 +88,13 @@ namespace BattleTank.Tank
         {
             onDeathofPlayer?.Invoke();
         }
+
+        public void DestroyTank(TankView tankView)
+        {
+            VFXService.Instance.CreateTankExplosion(tankView.transform.position, tankView.transform.rotation);
+        }
+
+     
 
     }
 }

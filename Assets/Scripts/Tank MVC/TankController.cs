@@ -39,22 +39,14 @@ namespace BattleTank.Tank
         //Tank Fire Logic.
         public void tankFire()
         {
-            Debug.Log("Tank Fired a bullet ");
-            Debug.DrawRay(TankView.barrelTip.position, TankView.barrelTip.forward * rayDistance, Color.green);
+            //Debug.Log("Tank Fired a bullet ");
+           
 
-            BulletService.Instance.CreateBullet(TankService.Instance.combinationCreation,"Player").setPosition(TankView.barrelTip.position, Quaternion.LookRotation(TankView.barrelTip.forward));
+            BulletService.Instance.CreateBullet(TankService.Instance.combinationCreation,"Player").setPosition(TankView.barrelTip.position,
+                Quaternion.LookRotation(TankView.barrelTip.forward));
 
             TankService.Instance.fireEvent();
 
-            RaycastHit hit;
-            if(Physics.Raycast(TankView.barrelTip.position, TankView.barrelTip.forward, out hit, rayDistance, TankView.rayMask))
-            {
-                if (hit.rigidbody != null)
-                {
-                    Debug.Log("Missile has hit enemy tank");
-                }
-            }
-           
             
         }
 
@@ -64,7 +56,24 @@ namespace BattleTank.Tank
             float xAxis = Input.GetAxisRaw("Horizontal1");
             float vAxis = Input.GetAxisRaw("Vertical1");
 
+
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                TankView.audioSource.clip = TankView.audioClips[1];
+                TankView.audioSource.Play();
+
+            }
+
+            else if(Input.GetKeyUp(KeyCode.W))
+            {
+                TankView.audioSource.clip = TankView.audioClips[0];
+                TankView.audioSource.Play();
+            }
+
+    
             TankView.transform.Translate(new Vector3(xAxis, TankView.transform.position.y, vAxis) * TankModel.Speed * Time.deltaTime);
+
+            
         }
 
 
@@ -96,6 +105,9 @@ namespace BattleTank.Tank
             if (TankModel.Health - damage <= 0)
             {
                 TankService.Instance.playerDeadEvent();
+                this.TankView.DisableView(TankView);
+
+                playVFX();
                 Debug.Log("Player tank has been destoryed.");
             }
             else
@@ -110,7 +122,14 @@ namespace BattleTank.Tank
         //    TankModel.destroyModel(TankModel);
         //    TankView.DestroyView(this.TankView);
         //}
- 
+
+
+        public void playVFX()
+        {
+            TankService.Instance.DestroyTank(this.TankView);
+        }
+
+
     }
 
 }

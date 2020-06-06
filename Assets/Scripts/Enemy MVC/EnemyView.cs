@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleTank.bullet;
 using System;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace BattleTank.EnemyTank
 {
@@ -10,11 +12,20 @@ namespace BattleTank.EnemyTank
     {
         public EnemyController enemyController;
 
-        private Enemeystate currentState;
+        public Enemeystate currentState;
 
         public Transform enemyBarrelTip;
         public LayerMask rayMask;
 
+        public List<GameObject> waypoints;
+        //public int CurrentWP = 0;
+
+        public Image sliderEnemyView;
+
+       public NavMeshAgent Agent;
+
+        [SerializeField]
+        public FixedPathState fixedPathState;
         [SerializeField]
         public IdleState idleState;
         [SerializeField]
@@ -25,27 +36,44 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-            
-            
+
+            Agent = this.GetComponent<NavMeshAgent>();
+            waypoints = WaypointService.Instance.Points;
+
+            currentState = fixedPathState;
+
+            //CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+          
+            //StartCoroutine(randomNumber());
+
         }
 
         private void Update()
         {
-            //_enemyController.EnemyZMovement();
-           
+            
         }
+
+
 
         public void initialize(EnemyController enemyController)
         {
             this.enemyController = enemyController;
+            initializeHealth(enemyController);
            
+        }
+
+       public void initializeHealth(EnemyController enemyController)
+        {
+            enemyController.startingHealth = enemyController.EnemyModel.Health;
+            
+
         }
 
         //Destroy enemy on collision with bullet.
         public void TakeDamage(BulletType bullettype, int damage)
         {
             
-            Debug.Log("Taking damage " + damage);
+            //Debug.Log("Taking damage " + damage);
             
             enemyController.ApplyDamage(damage);
             
@@ -65,11 +93,30 @@ namespace BattleTank.EnemyTank
             currentState.OnStateEnter();
         }
 
-        public void enemyDestroyView(EnemyView enemyView)
+        //public void enemyDestroyView(EnemyView enemyView)
+        //{ 
+        //    Destroy(enemyView.gameObject);
+        //    enemyView = null;
+        //}
+
+        public void enemyViewDisable()
         {
-            Destroy(enemyView.gameObject);
-            enemyView = null;
+            gameObject.SetActive(false);
         }
+
+        public void enemyViewEnabled()
+        {
+            gameObject.SetActive(true);
+        }
+
+        //  IEnumerator randomNumber()
+        //{
+        //    CurrentWP = UnityEngine.Random.Range(0, waypoints.Count);
+        //    Debug.Log(CurrentWP);
+        //    yield return new WaitForEndOfFrame();
+        //}
+
+  
 
     }
 }
